@@ -1,0 +1,16 @@
+{
+  "name": "Lark Desktop Environment",
+  "short_name": "LDE 27",
+  "description": "A modern, browser-based desktop operating system.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1e1e1e",
+  "theme_color": "#1e1e1e",
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

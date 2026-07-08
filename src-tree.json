@@ -1,0 +1,326 @@
+[
+  {
+    "type": "directory",
+    "path": "apps"
+  },
+  {
+    "type": "directory",
+    "path": "apps/system"
+  },
+  {
+    "type": "file",
+    "path": "apps/system/Desktop.js",
+    "size": 6039
+  },
+  {
+    "type": "file",
+    "path": "apps/system/EventViewer.js",
+    "size": 4855
+  },
+  {
+    "type": "file",
+    "path": "apps/system/FileManager.js",
+    "size": 7450
+  },
+  {
+    "type": "file",
+    "path": "apps/system/Lock.js",
+    "size": 1568
+  },
+  {
+    "type": "file",
+    "path": "apps/system/Login.js",
+    "size": 3553
+  },
+  {
+    "type": "file",
+    "path": "apps/system/OOBE.js",
+    "size": 2185
+  },
+  {
+    "type": "file",
+    "path": "apps/system/Settings.js",
+    "size": 7577
+  },
+  {
+    "type": "file",
+    "path": "apps/system/Shutdown.js",
+    "size": 961
+  },
+  {
+    "type": "file",
+    "path": "apps/system/TaskManager.js",
+    "size": 4687
+  },
+  {
+    "type": "file",
+    "path": "apps/system/Terminal.js",
+    "size": 3539
+  },
+  {
+    "type": "file",
+    "path": "apps/system/WindowTest.js",
+    "size": 2121
+  },
+  {
+    "type": "directory",
+    "path": "apps/system_backup"
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/Desktop.js",
+    "size": 8013
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/EventViewer.js",
+    "size": 4499
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/FileManager.js",
+    "size": 7253
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/Lock.js",
+    "size": 1783
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/Login.js",
+    "size": 4137
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/OOBE.js",
+    "size": 2322
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/Settings.js",
+    "size": 7875
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/Shutdown.js",
+    "size": 1189
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/TaskManager.js",
+    "size": 4746
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/Terminal.js",
+    "size": 4251
+  },
+  {
+    "type": "file",
+    "path": "apps/system_backup/WindowTest.js",
+    "size": 2222
+  },
+  {
+    "type": "directory",
+    "path": "apps/user"
+  },
+  {
+    "type": "directory",
+    "path": "kernel"
+  },
+  {
+    "type": "file",
+    "path": "kernel/AppRegistry.js",
+    "size": 3287
+  },
+  {
+    "type": "file",
+    "path": "kernel/boot.js",
+    "size": 441
+  },
+  {
+    "type": "file",
+    "path": "kernel/kernel.js",
+    "size": 7625
+  },
+  {
+    "type": "file",
+    "path": "kernel/registry.js",
+    "size": 1426
+  },
+  {
+    "type": "file",
+    "path": "kernel/SystemEventBus.js",
+    "size": 1730
+  },
+  {
+    "type": "directory",
+    "path": "managers"
+  },
+  {
+    "type": "file",
+    "path": "managers/DiskManager.js",
+    "size": 1102
+  },
+  {
+    "type": "file",
+    "path": "managers/IPCManager.js",
+    "size": 3039
+  },
+  {
+    "type": "file",
+    "path": "managers/NotificationManager.js",
+    "size": 928
+  },
+  {
+    "type": "file",
+    "path": "managers/ProcessManager.js",
+    "size": 2693
+  },
+  {
+    "type": "file",
+    "path": "managers/SessionManager.js",
+    "size": 2410
+  },
+  {
+    "type": "file",
+    "path": "managers/SettingsManager.js",
+    "size": 2249
+  },
+  {
+    "type": "file",
+    "path": "managers/SyslogManager.js",
+    "size": 500
+  },
+  {
+    "type": "file",
+    "path": "managers/UserManager.js",
+    "size": 2510
+  },
+  {
+    "type": "file",
+    "path": "managers/WindowManager.js",
+    "size": 7445
+  },
+  {
+    "type": "directory",
+    "path": "services"
+  },
+  {
+    "type": "file",
+    "path": "services/AppService.js",
+    "size": 852
+  },
+  {
+    "type": "file",
+    "path": "services/CommandService.js",
+    "size": 24183
+  },
+  {
+    "type": "file",
+    "path": "services/DiskService.js",
+    "size": 954
+  },
+  {
+    "type": "file",
+    "path": "services/FileService.js",
+    "size": 6469
+  },
+  {
+    "type": "file",
+    "path": "services/IPCService.js",
+    "size": 1904
+  },
+  {
+    "type": "file",
+    "path": "services/NotificationService.js",
+    "size": 1143
+  },
+  {
+    "type": "file",
+    "path": "services/PowerService.js",
+    "size": 4649
+  },
+  {
+    "type": "file",
+    "path": "services/ProcessService.js",
+    "size": 4684
+  },
+  {
+    "type": "file",
+    "path": "services/SessionService.js",
+    "size": 1555
+  },
+  {
+    "type": "file",
+    "path": "services/SettingsService.js",
+    "size": 1230
+  },
+  {
+    "type": "file",
+    "path": "services/SyslogService.js",
+    "size": 1504
+  },
+  {
+    "type": "file",
+    "path": "services/UserService.js",
+    "size": 459
+  },
+  {
+    "type": "file",
+    "path": "services/WindowService.js",
+    "size": 1758
+  },
+  {
+    "type": "directory",
+    "path": "storage"
+  },
+  {
+    "type": "directory",
+    "path": "storage/drivers"
+  },
+  {
+    "type": "file",
+    "path": "storage/drivers/LocalStorageDriver.js",
+    "size": 3670
+  },
+  {
+    "type": "directory",
+    "path": "storage/lrfs"
+  },
+  {
+    "type": "file",
+    "path": "storage/lrfs/LRFS.js",
+    "size": 7780
+  },
+  {
+    "type": "directory",
+    "path": "ui"
+  },
+  {
+    "type": "file",
+    "path": "ui/Dialog.js",
+    "size": 351
+  },
+  {
+    "type": "file",
+    "path": "ui/Dock.js",
+    "size": 1591
+  },
+  {
+    "type": "file",
+    "path": "ui/NotificationCenter.js",
+    "size": 1739
+  },
+  {
+    "type": "file",
+    "path": "ui/theme.css",
+    "size": 14346
+  },
+  {
+    "type": "file",
+    "path": "ui/WindowFrame.js",
+    "size": 6679
+  }
+]
