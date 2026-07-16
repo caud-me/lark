@@ -32,7 +32,15 @@
     <div id="platform-host"></div>
     <script>
         // Resolve the base URL dynamically to support subdirectory deployments (e.g., GitHub Pages)
-        window.LDE_BASE_URL = new URL('.', window.location.href).href;
+        let basePath = window.location.pathname;
+        if (!basePath.endsWith('/')) {
+            if (!basePath.split('/').pop().includes('.')) {
+                basePath += '/';
+            } else {
+                basePath = basePath.substring(0, basePath.lastIndexOf('/') + 1);
+            }
+        }
+        window.LDE_BASE_URL = window.location.origin + basePath;
     </script>
     <script type="module">
         import { ServiceWorkerManager } from './src/kernel/ServiceWorkerManager.js';
