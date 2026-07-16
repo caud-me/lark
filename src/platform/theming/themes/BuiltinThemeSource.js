@@ -12,7 +12,7 @@ export class BuiltinThemeSource {
             try {
                 // Since this runs in a browser ES module environment (like Vite or standard server),
                 // we can fetch the JSON assets directly from the repository.
-                const res = await fetch(`/src/platform/theming/themes/${id}.ldetheme`);
+                const res = await fetch(new URL(`src/platform/theming/themes/${id}.ldetheme`, window.LDE_BASE_URL).href);
                 if (res.ok) {
                     const themeData = await res.json();
                     themes.push(themeData);

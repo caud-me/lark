@@ -184,7 +184,7 @@ class Kernel {
         
 
         this.repositoryManager = new RepositoryManager();
-        this.repositoryManager.registerSource('builtin-official', new BuiltinRepositorySource('/src/platform/packages/repositories/official.json'));
+        this.repositoryManager.registerSource('builtin-official', new BuiltinRepositorySource(new URL('src/platform/packages/repositories/official.json', window.LDE_BASE_URL).href));
         this.managers.set('RepositoryManager', this.repositoryManager);
 
         this.runtimeLoaderManager = new RuntimeLoaderManager();

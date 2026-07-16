@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v103';
+const CACHE_NAME = 'v104';
 const ASSETS_TO_CACHE = [
     './index.html',
     './hdd.webp',

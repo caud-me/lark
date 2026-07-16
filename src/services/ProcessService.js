@@ -186,7 +186,8 @@ export class ProcessService {
 
         try {
             // Natively load the desktop entry point
-            const module = await import(desktopEnv.entryPoint);
+            const url = new URL(desktopEnv.entryPoint.replace(/^\//, ''), window.LDE_BASE_URL).href;
+            const module = await import(url);
             if (module.default && typeof module.default.run === 'function') {
                 module.default.run(this.serviceRegistry, pid).catch(e => {
                     EventBus.emit('processService:error', { severity: 'Error', source: 'ProcessService', message: `Desktop ${desktopEnv.id} runtime error: ${e.message}` });

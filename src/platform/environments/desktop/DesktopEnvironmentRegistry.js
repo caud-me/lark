@@ -5,7 +5,7 @@ export class DesktopEnvironmentRegistry {
                 id: 'sys.desktop',
                 type: 'desktop-environment',
                 name: 'LDE Desktop',
-                entryPoint: '/src/platform/environments/desktop/Desktop.js'
+                entryPoint: 'src/platform/environments/desktop/Desktop.js'
             }
         ];
     }

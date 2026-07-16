@@ -30,7 +30,8 @@ export class LoginPlatformEnvironment extends Environment {
         this.metadata = platformRegistry.getEnvironment('sys.login');
     }
     async mount() {
-        const module = await import(this.metadata.entryPoint);
+        const url = new URL(this.metadata.entryPoint.replace(/^\//, ''), window.LDE_BASE_URL).href;
+        const module = await import(url);
         await module.default.run(this.registry);
     }
     async destroy() {
@@ -45,7 +46,8 @@ export class LockPlatformEnvironment extends Environment {
         this.metadata = platformRegistry.getEnvironment('sys.lock');
     }
     async mount() {
-        const module = await import(this.metadata.entryPoint);
+        const url = new URL(this.metadata.entryPoint.replace(/^\//, ''), window.LDE_BASE_URL).href;
+        const module = await import(url);
         await module.default.run(this.registry);
     }
     async destroy() {
@@ -60,7 +62,8 @@ export class RecoveryPlatformEnvironment extends Environment {
         this.metadata = platformRegistry.getEnvironment('sys.recovery');
     }
     async mount() {
-        const module = await import(this.metadata.entryPoint);
+        const url = new URL(this.metadata.entryPoint.replace(/^\//, ''), window.LDE_BASE_URL).href;
+        const module = await import(url);
         await module.default.run(this.registry);
     }
     async destroy() {
@@ -76,7 +79,8 @@ export class OobePlatformEnvironment extends Environment {
     }
 
     async mount() {
-        const module = await import(this.metadata.entryPoint);
+        const url = new URL(this.metadata.entryPoint.replace(/^\//, ''), window.LDE_BASE_URL).href;
+        const module = await import(url);
         await module.default.run(this.registry);
     }
 
@@ -94,7 +98,8 @@ export class WelcomePlatformEnvironment extends Environment {
     }
 
     async mount() {
-        const module = await import(this.metadata.entryPoint);
+        const url = new URL(this.metadata.entryPoint.replace(/^\//, ''), window.LDE_BASE_URL).href;
+        const module = await import(url);
         await module.default.run(this.registry, this.username);
     }
 
@@ -111,7 +116,8 @@ export class ShutdownPlatformEnvironment extends Environment {
     }
 
     async mount() {
-        const module = await import(this.metadata.entryPoint);
+        const url = new URL(this.metadata.entryPoint.replace(/^\//, ''), window.LDE_BASE_URL).href;
+        const module = await import(url);
         module.default.run(this.registry);
     }
 

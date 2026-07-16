@@ -12,15 +12,17 @@ export class BuiltinRuntimeLoader {
         }
 
         // Support legacy relative paths from the old kernel layout and map them to
-        // the current browser-served app location under /src/apps.
+        // the current browser-served app location under src/apps.
         if (entryPoint.startsWith('../apps/')) {
-            entryPoint = entryPoint.replace('../apps/', '/src/apps/');
+            entryPoint = entryPoint.replace('../apps/', 'src/apps/');
         }
 
-        if (entryPoint.startsWith('/src/apps/')) {
-            return import(entryPoint);
+        // Strip leading slash if present to make it relative to LDE_BASE_URL
+        if (entryPoint.startsWith('/')) {
+            entryPoint = entryPoint.substring(1);
         }
 
-        return import(entryPoint);
+        const url = new URL(entryPoint, window.LDE_BASE_URL).href;
+        return import(url);
     }
 }

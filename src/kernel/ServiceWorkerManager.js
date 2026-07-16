@@ -10,9 +10,9 @@ export class ServiceWorkerManager {
 
         try {
             // 2. Register the Service Worker script
-            // The scope '/' means it can intercept requests for the entire site
+            // The scope './' means it intercepts requests starting from its location (e.g. /lark/)
             const reg = await navigator.serviceWorker.register('./sw.js', {
-                scope: '/'
+                scope: './'
             });
             console.log('[ServiceWorkerManager] Registered', reg);
 

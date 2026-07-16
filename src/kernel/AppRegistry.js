@@ -26,7 +26,7 @@ export class AppRegistry {
                 icon: '📋',
                 category: 'System',
                 loader: 'builtin',
-                entryPoint: '/src/apps/system/EventViewer.js',
+                entryPoint: 'src/apps/system/EventViewer.js',
                 type: 'system',
                 singleton: true,
                 protected: false,
@@ -44,7 +44,7 @@ export class AppRegistry {
                 icon: '📈',
                 category: 'System',
                 loader: 'builtin',
-                entryPoint: '/src/apps/system/TaskManager.js',
+                entryPoint: 'src/apps/system/TaskManager.js',
                 type: 'system',
                 singleton: true,
                 protected: false,
@@ -62,7 +62,7 @@ export class AppRegistry {
                 icon: '▶️',
                 category: 'System',
                 loader: 'builtin',
-                entryPoint: '/src/apps/system/Terminal.js',
+                entryPoint: 'src/apps/system/Terminal.js',
                 type: 'system',
                 singleton: false,
                 protected: false,
@@ -80,7 +80,7 @@ export class AppRegistry {
                     {
                         id: 'command-search',
                         type: 'search-provider',
-                        entryPoint: '/src/platform/search/providers/CommandSearchProvider.js'
+                        entryPoint: 'src/platform/search/providers/CommandSearchProvider.js'
                     }
                 ],
                 searchableIntents: [
@@ -100,7 +100,7 @@ export class AppRegistry {
                 icon: '⚙️',
                 category: 'System',
                 loader: 'builtin',
-                entryPoint: '/src/apps/system/Settings.js',
+                entryPoint: 'src/apps/system/Settings.js',
                 type: 'system',
                 singleton: true,
                 protected: false,
@@ -144,7 +144,7 @@ export class AppRegistry {
                 icon: '📁',
                 category: 'System',
                 loader: 'builtin',
-                entryPoint: '/src/apps/system/FileManager.js',
+                entryPoint: 'src/apps/system/FileManager.js',
                 type: 'system',
                 singleton: false,
                 protected: false,
@@ -157,7 +157,7 @@ export class AppRegistry {
                     {
                         id: 'file-search',
                         type: 'search-provider',
-                        entryPoint: '/src/platform/search/providers/FileSearchProvider.js'
+                        entryPoint: 'src/platform/search/providers/FileSearchProvider.js'
                     }
                 ],
                 searchableIntents: [
@@ -189,7 +189,7 @@ export class AppRegistry {
                 icon: '🛍️',
                 category: 'System',
                 loader: 'builtin',
-                entryPoint: '/src/apps/system/SoftwareCenter.js',
+                entryPoint: 'src/apps/system/SoftwareCenter.js',
                 type: 'system',
                 singleton: true,
                 protected: false,
@@ -202,7 +202,7 @@ export class AppRegistry {
                     {
                         id: 'package-search',
                         type: 'search-provider',
-                        entryPoint: '/src/platform/search/providers/PackageSearchProvider.js'
+                        entryPoint: 'src/platform/search/providers/PackageSearchProvider.js'
                     }
                 ]
             }

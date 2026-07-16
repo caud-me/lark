@@ -36,7 +36,12 @@ export class SearchService {
         for (const ext of extensions) {
             try {
                 // Dynamically import the entryPoint
-                const module = await import(ext.entryPoint);
+                let entryPoint = ext.entryPoint;
+                if (entryPoint.startsWith('/')) {
+                    entryPoint = entryPoint.substring(1);
+                }
+                const url = new URL(entryPoint, window.LDE_BASE_URL).href;
+                const module = await import(url);
                 
                 // Assuming the provider is exported by name (e.g. ApplicationSearchProvider)
                 // or as default. We'll search for the first exported class.
