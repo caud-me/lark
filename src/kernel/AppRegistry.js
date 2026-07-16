@@ -2,37 +2,39 @@
  * AppRegistry
  *
  * Responsibility:
- * Maintains the registry of installed applications.
+ * Acts as an application factory and runtime entrypoint resolver.
+ * Also provides the list of built-in applications for initial system bootstrap.
  *
  * Does NOT:
- * - Launch applications
- * - Manage running processes
+ * - Launch applications or manage processes (ProcessService does this)
  */
 export class AppRegistry {
     constructor() {
-        this.apps = new Map();
-        this._loadDefaultApps();
-        
-        // TODO (Series 2):
-        // Load app definitions from /system/apps.json
     }
 
-    _loadDefaultApps() {
-        const defaultApps = [
+    /**
+     * Returns the built-in system applications used to bootstrap an empty system.
+     * @returns {Array} List of default app definitions
+     */
+    getBuiltinApplications() {
+        return [
             {
                 id: 'sys.eventviewer',
                 title: 'Event Viewer',
-                name: 'Event Viewer', // legacy alias
+                name: 'Event Viewer',
                 description: 'System logging and diagnostic viewer',
                 icon: '📋',
                 category: 'System',
-                entryPoint: '../apps/system/EventViewer.js',
+                loader: 'builtin',
+                entryPoint: '/src/apps/system/EventViewer.js',
                 type: 'system',
                 singleton: true,
                 protected: false,
                 hidden: false,
-                version: '1.0.0',
-                author: 'LDE Core'
+                version: '2.0',
+                author: 'LDE Core',
+                keywords: ['logs', 'diagnostics', 'events', 'syslog'],
+                permissions: []
             },
             {
                 id: 'sys.taskmanager',
@@ -41,13 +43,16 @@ export class AppRegistry {
                 description: 'Process and performance monitoring',
                 icon: '📈',
                 category: 'System',
-                entryPoint: '../apps/system/TaskManager.js',
+                loader: 'builtin',
+                entryPoint: '/src/apps/system/TaskManager.js',
                 type: 'system',
                 singleton: true,
                 protected: false,
                 hidden: false,
                 version: '1.0.0',
-                author: 'LDE Core'
+                author: 'LDE Core',
+                keywords: ['processes', 'performance', 'cpu', 'memory'],
+                permissions: []
             },
             {
                 id: 'sys.terminal',
@@ -56,28 +61,36 @@ export class AppRegistry {
                 description: 'Command line interface',
                 icon: '▶️',
                 category: 'System',
-                entryPoint: '../apps/system/Terminal.js',
+                loader: 'builtin',
+                entryPoint: '/src/apps/system/Terminal.js',
                 type: 'system',
                 singleton: false,
                 protected: false,
                 hidden: false,
+                capabilities: {
+                    fileTypes: ['.txt', '.md'],
+                    mimeTypes: ['text/plain']
+                },
+                defaultAction: 'open',
                 version: '1.0.0',
-                author: 'LDE Core'
-            },
-            {
-                id: 'sys.login',
-                title: 'Login',
-                name: 'Login',
-                description: 'System authentication screen',
-                icon: '🔑',
-                category: 'System',
-                entryPoint: '../apps/system/Login.js',
-                type: 'system',
-                singleton: true,
-                protected: false,
-                hidden: true,
-                version: '1.0.0',
-                author: 'LDE Core'
+                author: 'LDE Core', 
+                keywords: ['cli', 'command', 'shell', 'prompt'],
+                permissions: ['filesystem.read', 'filesystem.write', 'process.manage'],
+                extensions: [
+                    {
+                        id: 'command-search',
+                        type: 'search-provider',
+                        entryPoint: '/src/platform/search/providers/CommandSearchProvider.js'
+                    }
+                ],
+                searchableIntents: [
+                    {
+                        title: "Execute Command",
+                        keywords: ["run", "cli", "terminal", "prompt", "bash", "execute", "shell"],
+                        icon: "▶️",
+                        intent: { type: "terminal.execute", payload: { command: "help" } }
+                    }
+                ]
             },
             {
                 id: 'sys.settings',
@@ -86,13 +99,42 @@ export class AppRegistry {
                 description: 'System configuration and preferences',
                 icon: '⚙️',
                 category: 'System',
-                entryPoint: '../apps/system/Settings.js',
+                loader: 'builtin',
+                entryPoint: '/src/apps/system/Settings.js',
                 type: 'system',
                 singleton: true,
                 protected: false,
                 hidden: false,
-                version: '1.0.0',
-                author: 'LDE Core'
+                version: '1.0.2',
+                author: 'LDE Core',
+                keywords: ['preferences', 'configuration', 'options'],
+                permissions: ['settings.read', 'settings.write'],
+                searchableIntents: [
+                    {
+                        title: "Personalization",
+                        keywords: ["wallpaper", "background", "desktop", "theme", "appearance", "dark mode", "light mode"],
+                        icon: "🎨",
+                        intent: { type: "settings.openPage", payload: { page: "personalization" } }
+                    },
+                    {
+                        title: "Accounts",
+                        keywords: ["users", "profiles", "passwords", "security", "login", "identity"],
+                        icon: "👤",
+                        intent: { type: "settings.openPage", payload: { page: "users" } }
+                    },
+                    {
+                        title: "System Details",
+                        keywords: ["about", "version", "info", "specs", "hardware", "device"],
+                        icon: "💻",
+                        intent: { type: "settings.openPage", payload: { page: "system" } }
+                    },
+                    {
+                        title: "Developer Options",
+                        keywords: ["dev", "debug", "tools", "flags", "experimental"],
+                        icon: "🛠️",
+                        intent: { type: "settings.openPage", payload: { page: "developer" } }
+                    }
+                ]
             },
             {
                 id: 'sys.filemanager',
@@ -101,144 +143,69 @@ export class AppRegistry {
                 description: 'Explore and manage local storage',
                 icon: '📁',
                 category: 'System',
-                entryPoint: '../apps/system/FileManager.js',
+                loader: 'builtin',
+                entryPoint: '/src/apps/system/FileManager.js',
                 type: 'system',
                 singleton: false,
                 protected: false,
                 hidden: false,
                 version: '1.0.0',
-                author: 'LDE Core'
+                author: 'LDE Core',
+                keywords: ['files', 'explorer', 'storage', 'folders'],
+                permissions: ['filesystem.read', 'filesystem.write'],
+                extensions: [
+                    {
+                        id: 'file-search',
+                        type: 'search-provider',
+                        entryPoint: '/src/platform/search/providers/FileSearchProvider.js'
+                    }
+                ],
+                searchableIntents: [
+                    {
+                        title: "Documents",
+                        keywords: ["files", "docs", "text", "work", "papers"],
+                        icon: "📄",
+                        intent: { type: "files.openDirectory", payload: { path: "~/Documents" } }
+                    },
+                    {
+                        title: "Downloads",
+                        keywords: ["files", "downloads", "incoming", "web", "saved"],
+                        icon: "📥",
+                        intent: { type: "files.openDirectory", payload: { path: "~/Downloads" } }
+                    },
+                    {
+                        title: "Desktop Files",
+                        keywords: ["files", "desktop", "workspace", "home"],
+                        icon: "🖥️",
+                        intent: { type: "files.openDirectory", payload: { path: "~/Desktop" } }
+                    }
+                ]
             },
             {
-                id: 'sys.windowtest',
-                title: 'Window Test',
-                name: 'Window Test',
-                description: 'Diagnostic tool for windowing system',
-                icon: '🛠️',
-                category: 'Development',
-                entryPoint: '../apps/system/WindowTest.js',
+                id: 'sys.softwarecenter',
+                title: 'Software Center',
+                name: 'Software Center',
+                description: 'Discover and install applications',
+                icon: '🛍️',
+                category: 'System',
+                loader: 'builtin',
+                entryPoint: '/src/apps/system/SoftwareCenter.js',
                 type: 'system',
-                singleton: false,
+                singleton: true,
                 protected: false,
                 hidden: false,
                 version: '1.0.0',
-                author: 'LDE Core'
-            },
-            {
-                id: 'sys.desktop',
-                title: 'Desktop Workspace',
-                name: 'Desktop Workspace',
-                description: 'Primary visual workspace and orchestrator',
-                icon: '🖥️',
-                category: 'System',
-                entryPoint: '../apps/system/Desktop.js',
-                type: 'system',
-                singleton: true,
-                protected: true,
-                hidden: true,
-                startup: true,
-                background: true,
-                version: '1.0.0',
-                author: 'LDE Core'
-            },
-            {
-                id: 'sys.oobe',
-                title: 'Setup',
-                name: 'Setup',
-                description: 'Out-of-box experience and initial configuration',
-                icon: '🛠️',
-                category: 'System',
-                entryPoint: '../apps/system/OOBE.js',
-                type: 'system',
-                singleton: true,
-                protected: false,
-                hidden: true,
-                version: '1.0.0',
-                author: 'LDE Core'
-            },
-            {
-                id: 'sys.lock',
-                title: 'Lock Screen',
-                name: 'Lock Screen',
-                description: 'Session security screen',
-                icon: '🔒',
-                category: 'System',
-                entryPoint: '../apps/system/Lock.js',
-                type: 'system',
-                singleton: true,
-                protected: false,
-                hidden: true,
-                version: '1.0.0',
-                author: 'LDE Core'
-            },
-            {
-                id: 'sys.shutdown',
-                title: 'Shutdown Screen',
-                name: 'Shutdown Screen',
-                description: 'System termination sequence UI',
-                icon: '⏻',
-                category: 'System',
-                entryPoint: '../apps/system/Shutdown.js',
-                type: 'system',
-                singleton: true,
-                protected: true,
-                hidden: true,
-                version: '1.0.0',
-                author: 'LDE Core'
-            },
-            {
-                id: 'app.virus',
-                title: 'System Optimizer',
-                name: 'System Optimizer',
-                description: 'Simulates malicious system activity (for demonstration)',
-                icon: '🚀',
-                category: 'User',
-                entryPoint: '../apps/user/VirusSimulator.js',
-                type: 'user',
-                singleton: false,
-                protected: false,
-                hidden: false,
-                version: '1.0.0',
-                author: 'Unknown'
+                author: 'LDE Core',
+                keywords: ['store', 'packages', 'install', 'marketplace'],
+                permissions: ['packages.manage'],
+                extensions: [
+                    {
+                        id: 'package-search',
+                        type: 'search-provider',
+                        entryPoint: '/src/platform/search/providers/PackageSearchProvider.js'
+                    }
+                ]
             }
         ];
-
-        defaultApps.forEach(app => this.registerApp(app));
-    }
-
-    /**
-     * Registers a new application dynamically.
-     * @param {Object} appDefinition 
-     */
-    registerApp(appDefinition) {
-        if (!appDefinition.id) {
-            throw new Error('Application definition must include an ID.');
-        }
-        this.apps.set(appDefinition.id, appDefinition);
-    }
-
-    /**
-     * Unregisters an application.
-     * @param {string} appId 
-     */
-    unregisterApp(appId) {
-        this.apps.delete(appId);
-    }
-
-    /**
-     * Gets all registered apps.
-     * @returns {Array} List of app metadata objects
-     */
-    getAllApps() {
-        return Array.from(this.apps.values());
-    }
-
-    /**
-     * Gets a specific app by ID.
-     * @param {string} id 
-     * @returns {Object|null}
-     */
-    getAppById(id) {
-        return this.apps.get(id) || null;
     }
 }

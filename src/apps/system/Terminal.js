@@ -1,4 +1,5 @@
 import { SYSTEM_INFO } from '../../system/SystemVersion.js';
+import { EventBus } from '../../kernel/SystemEventBus.js';
 
 /**
  * Terminal Application
@@ -10,7 +11,7 @@ import { SYSTEM_INFO } from '../../system/SystemVersion.js';
  * - Parse commands or execute command logic directly
  */
 export default {
-    run: async (registry, pid) => {
+    run: async (registry, pid, options = {}) => {
         const WindowService = registry.get('WindowService');
         const CommandService = registry.get('CommandService');
         const ProcessService = registry.get('ProcessService');
@@ -22,6 +23,7 @@ export default {
 
         const proc = ProcessService.getProcess(pid);
         const username = proc ? proc.ownerUsername : 'system';
+        const sessionId = proc ? proc.sessionId : null;
         // Simplification for terminal: assume home directory is /users/[username]
         let cwd = username === 'system' ? '/' : `/users/${username}`;
 
@@ -83,7 +85,7 @@ export default {
                 win.contentElement.scrollTop = win.contentElement.scrollHeight;
 
                 // Execute
-                const res = await CommandService.executeCommand(cmd, { cwd, termId: win.id });
+                const res = await CommandService.executeCommand(cmd, { cwd, termId: win.id, sessionId });
                 if (res.output) {
                     historyEl.innerHTML += `<div>${res.output}</div>`;
                 }
@@ -95,5 +97,49 @@ export default {
                 win.contentElement.scrollTop = win.contentElement.scrollHeight;
             }
         });
+
+        // Helper to execute intent
+        const executeIntent = async (intent) => {
+            if (!intent) return;
+            
+            let cmd = null;
+            if (intent.type === 'terminal.execute' && intent.payload && intent.payload.command) {
+                cmd = intent.payload.command;
+            } else if (intent.action === 'open-file' && intent.path) {
+                cmd = `cat ${intent.path}`;
+            }
+            
+            if (cmd) {
+                historyEl.innerHTML += `<div><span class="text-success">${username}@${SYSTEM_INFO.name.replace(' ', '').toLowerCase()}:${cwd}$</span> ${cmd}</div>`;
+                const res = await CommandService.executeCommand(cmd, { cwd, termId: win.id, sessionId });
+                if (res.output) {
+                    historyEl.innerHTML += `<div>${res.output}</div>`;
+                }
+                cwd = res.newCwd || cwd;
+                promptEl.textContent = `${username}@${SYSTEM_INFO.name.replace(' ', '').toLowerCase()}:${cwd}$`;
+                win.contentElement.scrollTop = win.contentElement.scrollHeight;
+            }
+        };
+
+        // Attach intent executor to window for runtime delivery
+        win.handleIntent = executeIntent;
+
+        // Execute launch intent if provided
+        if (options.intent) {
+            await executeIntent(options.intent);
+        } else if (options.args && options.args.length > 0) {
+            // Legacy args fallback
+            await executeIntent({ action: 'open-file', path: options.args[0] });
+        }
+    },
+
+    onIntent: async (registry, pid, intent) => {
+        const WindowService = registry.get('WindowService');
+        if (!WindowService) return;
+        
+        const win = WindowService.getWindows().find(w => w.pid === pid);
+        if (win && typeof win.handleIntent === 'function') {
+            await win.handleIntent(intent);
+        }
     }
 };

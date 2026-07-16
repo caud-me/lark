@@ -3,28 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LDE 27</title>
+    <title>Lark OS 27</title>
+    <link rel="icon" href="./assets/icons/icon.svg">
     <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./src/ui/theme.css">
+    <!-- version 2 omni -->
+    <link rel="stylesheet" href="./src/ui/omni.css">
     <style>
-        #desktop {
-            position: relative;
+        #desktop-host, #platform-host {
+            position: absolute;
+            top: 0; left: 0;
             width: 100%;
             height: 100%;
+        }
+        #platform-host {
+            pointer-events: none;
+            z-index: 9000;
+        }
+        #platform-host > * {
+            pointer-events: auto;
         }
     </style>
 </head>
 <body>
-    <div id="desktop">
+    <div id="desktop-host">
         <div id="window-host" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
     </div>
-    <script type="module" src="./src/kernel/BootLoader.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('[Service Worker] Registered', reg))
-            .catch(err => console.error('[Service Worker] Registration failed', err));
-        }
+    <div id="platform-host"></div>
+    <script type="module">
+        import { ServiceWorkerManager } from './src/kernel/ServiceWorkerManager.js';
+        ServiceWorkerManager.init();
     </script>
+    <script type="module" src="./src/kernel/BootLoader.js"></script>
 </body>
 </html>

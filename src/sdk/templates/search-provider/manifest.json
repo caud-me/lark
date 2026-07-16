@@ -1,0 +1,16 @@
+{
+    "id": "com.example.search",
+    "name": "Search Provider App",
+    "version": "1.0.0",
+    "type": "extension",
+    "minimumOsVersion": "1.0.0",
+    "sdkVersion": "1.0",
+    "extensions": [
+        {
+            "type": "SearchProvider",
+            "id": "example-search",
+            "name": "Example Search",
+            "entryPoint": "/SearchProvider.js"
+        }
+    ]
+}

@@ -1,4 +1,5 @@
 import { coreKernel } from './kernel.js';
+import { BootSplash } from '../platform/boot/BootSplash.js';
 
 /**
  * BootLoader
@@ -11,6 +12,11 @@ import { coreKernel } from './kernel.js';
  */
 document.addEventListener('DOMContentLoaded', () => {
     console.log('[Bootloader] DOM loaded. Handing off to Kernel...');
+    
+    // Initialize the visual boot observer
+    const bootSplash = new BootSplash();
+    bootSplash.mount();
+
     coreKernel.bootstrap().catch(err => {
         console.error('[Bootloader] Fatal exception caught outside Kernel:', err);
     });

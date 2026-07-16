@@ -1,0 +1,21 @@
+{
+  "id": "light",
+  "title": "Light",
+  "variables": {
+    "--lde-bg-base": "#f6f8fa",
+    "--lde-bg-surface": "#ffffff",
+    "--lde-bg-surface-elevated": "#f0f2f5",
+    "--lde-bg-surface-hover": "#eaeef2",
+    "--lde-bg-glass": "#ffffff",
+    "--lde-bg-glass-heavy": "#f6f8fa",
+    "--lde-accent": "#0969da",
+    "--lde-accent-hover": "#0550ae",
+    "--lde-accent-active": "#033d8b",
+    "--lde-text-primary": "#1f2328",
+    "--lde-text-secondary": "#656d76",
+    "--lde-text-muted": "#8c959f",
+    "--lde-text-inverse": "#ffffff",
+    "--lde-border": "#d0d7de",
+    "--lde-border-light": "#e1e4e8"
+  }
+}

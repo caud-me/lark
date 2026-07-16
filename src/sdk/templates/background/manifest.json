@@ -1,0 +1,10 @@
+{
+    "id": "com.example.background",
+    "name": "Background App",
+    "version": "1.0.0",
+    "type": "application",
+    "entryPoint": "/App.js",
+    "minimumOsVersion": "1.0.0",
+    "sdkVersion": "1.0",
+    "permissions": ["notifications:show"]
+}

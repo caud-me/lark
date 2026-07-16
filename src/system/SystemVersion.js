@@ -9,15 +9,15 @@
  */
 
 export const SYSTEM_INFO = {
-    name: "LDE 27",
-    codename: "Waffle",
+    name: "Lark OS",
+    codename: "Waffle", // year 27 is Waffle, never change this.
     year: 27,
-    milestone: 1,
-    phase: 20,
-    hotfix: 0,
+    milestone: 5,
+    phase: 22,
+    hotfix: 1,
     channel: "stable",
     build: 1,
-    architecture: "Series 1",
+    architecture: "Series 5",
 
     get version() {
         return `${this.year}.${this.milestone}.${this.phase}.${this.hotfix}`;

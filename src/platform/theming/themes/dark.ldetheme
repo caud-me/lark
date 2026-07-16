@@ -1,0 +1,21 @@
+{
+  "id": "dark",
+  "title": "Dark",
+  "variables": {
+    "--lde-bg-base": "#0f0f0f",
+    "--lde-bg-surface": "#141414",
+    "--lde-bg-surface-elevated": "#1e1e1e",
+    "--lde-bg-surface-hover": "#262c36",
+    "--lde-bg-glass": "#0f0f0f",
+    "--lde-bg-glass-heavy": "#141414",
+    "--lde-accent": "#2f81f7",
+    "--lde-accent-hover": "#4c8ff9",
+    "--lde-accent-active": "#1f6feb",
+    "--lde-text-primary": "#e6edf3",
+    "--lde-text-secondary": "#8d96a0",
+    "--lde-text-muted": "#6e7681",
+    "--lde-text-inverse": "#0f0f0f",
+    "--lde-border": "#80808040",
+    "--lde-border-light": "#80808020"
+  }
+}

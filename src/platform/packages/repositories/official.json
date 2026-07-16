@@ -1,0 +1,34 @@
+{
+  "repositoryVersion": 1,
+  "name": "Official LDE Repository",
+  "packages": [
+    {
+      "id": "example.notes",
+      "title": "Notes (Demo)",
+      "version": "1.0.0",
+      "description": "A simple note-taking application showcasing the LDE package ecosystem.",
+      "author": "LDE Community",
+      "download": "/src/platform/packages/repositories/packages/example.notes.ldepkg",
+      "screenshots": [],
+      "homepage": "https://lde27.example",
+      "license": "MIT",
+      "tags": ["productivity", "notes", "demo"],
+      "minimumOsVersion": "27.1.0",
+      "size": 2048
+    },
+    {
+      "id": "example.intenttester",
+      "title": "Intent Tester",
+      "version": "1.0.0",
+      "description": "Integration test utility for the Application Intent routing architecture.",
+      "author": "Lark OS Architecture Team",
+      "download": "/src/platform/packages/repositories/packages/example.intenttester.ldepkg",
+      "screenshots": [],
+      "homepage": "https://lde27.example",
+      "license": "MIT",
+      "tags": ["developer", "tools", "intents"],
+      "minimumOsVersion": "27.5.21",
+      "size": 4096
+    }
+  ]
+}

@@ -1,3 +1,6 @@
+import { LogCategory } from '../system/LogCategory.js';
+import { LogSeverity } from '../system/LogSeverity.js';
+
 /**
  * SystemEventBus
  *
@@ -10,6 +13,7 @@
 class SystemEventBus {
     constructor() {
         this.listeners = new Map();
+        this._nextEventId = 1;
     }
 
     /**
@@ -45,16 +49,27 @@ class SystemEventBus {
      * @param {Object} payload 
      */
     emit(event, payload = {}) {
-        // Specific listeners
+        // Specific listeners get original payload (no contract changes!)
         if (this.listeners.has(event)) {
             for (const cb of this.listeners.get(event)) {
                 try { cb(payload); } catch (e) { console.error('EventBus error:', e); }
             }
         }
-        // Wildcard listeners
+        // Wildcard listeners (such as LogService) get a structured envelope
         if (event !== '*' && this.listeners.has('*')) {
+            const idNumber = this._nextEventId++;
+            const envelope = {
+                id: `#${String(idNumber).padStart(6, '0')}`,
+                timestamp: new Date().toISOString(),
+                source: payload.source || 'System',
+                category: payload.category || LogCategory.PLATFORM,
+                severity: payload.severity || LogSeverity.INFO,
+                event: event,
+                message: payload.message || payload.msg || (payload.serviceName ? `Registered service: ${payload.serviceName}` : `${event} event triggered`),
+                payload: payload
+            };
             for (const cb of this.listeners.get('*')) {
-                try { cb(event, payload); } catch (e) { console.error('EventBus wildcard error:', e); }
+                try { cb(event, envelope); } catch (e) { console.error('EventBus wildcard error:', e); }
             }
         }
     }

@@ -1,0 +1,696 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'sfi';
+    src: url(sfi.ttf);
+}
+
+html {
+    font-size: 12px;
+}
+
+:root {
+    --omni-scrollbar-color: rgba(255, 255, 255, 0.16);
+    --omni-scrollbar-color-hover: rgba(255, 255, 255, 0.32);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--omni-scrollbar-color) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+    opacity: 0;
+    transition: opacity 180ms ease;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--omni-scrollbar-color);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    opacity: 0;
+    transition: opacity 180ms ease, background-color 180ms ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--omni-scrollbar-color-hover);
+}
+
+*:hover::-webkit-scrollbar-track,
+*:hover::-webkit-scrollbar-thumb,
+*:focus-within::-webkit-scrollbar-track,
+*:focus-within::-webkit-scrollbar-thumb,
+*:active::-webkit-scrollbar-track,
+*:active::-webkit-scrollbar-thumb {
+    opacity: 1;
+}
+
+span {
+    font-size: 12px;
+}
+
+span.tag {
+    background-color: #80808020;
+    padding-inline: 2px;
+    border-radius: 4px;
+    color: #808080;
+}
+
+span.tag.info {
+    background-color: #36495480;
+    color: #529CCA;
+}
+
+span.tag.success {
+    background-color: #354C4B80;
+    color: #4DAB9A;
+}
+span.tag.warning {
+    background-color: #59563B80;
+    color: #FFDC49;
+}
+
+
+p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+}
+
+.omni-window-frame {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    border: solid 1px #202020;
+}
+
+.omni-window-head {
+    height: 32px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #151515;
+}
+
+.omni-window-title {
+    height: 32px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    padding-inline-start: 8px;
+}
+
+.omni-window-title > :nth-child(2) {
+    background-color: #80808020;
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #808080;
+    font-size: 8px;
+}
+
+.omni-window-controls {
+    height: 32px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.omni-window-controls > button {
+    height: 32px;
+    width: 36px;
+
+    border: none;
+    font-family: 'sfi';
+    padding: 0;
+    background-color: transparent;
+    color: #fff;
+    line-height: 1;
+    font-size: 8px;
+    height: 100%;
+
+    border-radius: 0;
+}
+
+.omni-window-body {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+}
+
+/* main sidebar */
+.omni-panel-1 {
+    flex: 0 0 196px;
+    height: 100%;
+    background-color: #151515;
+
+    padding: 8px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+}
+
+/* main content */
+.omni-panel-2 {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    background-color: #151515;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 8px;
+    overflow: auto;
+}
+
+/* right sidebar / details panel */
+.omni-panel-3 {
+    flex: 0 0 384px;
+    height: 100%;
+    background-color: #151515;
+
+    padding: 8px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.layout-max-w-512px {
+    width: 512px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    line-height: 2;
+    margin-block-start: .5em;
+}
+
+i {
+    all: initial;
+    font-family: 'sfi';
+    font-size: 14px;
+    color: #aaa;
+}
+
+input {
+    all: initial;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    color: #fff;
+}
+
+.comp-searchbar, .comp-typebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #80808020;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-bottom: solid 1px #80808040;
+}
+
+.comp-selectbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #80808020;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-bottom: solid 1px #80808040;
+}
+
+.comp-selectbox > select {
+    all: initial;
+    flex: 1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.comp-sidebartab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 4px;
+}
+
+.comp-sidebartab:hover {
+    background-color: #80808020;
+}
+
+.comp-sidebartab.active {
+    background-color: #80808020;
+}
+
+.comp-card {
+    padding: 16px;
+    border-radius: 8px;
+    border: solid 1px #80808020;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.comp-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.comp-textbox-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+small {
+    display: block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 11px;
+    color: #aaa;
+}
+
+small.er {
+    font-size: 9px;
+    color: #80808080;
+    font-weight: 600;
+}
+
+img {
+    height: 32px;
+    width: 32px;
+}
+
+.layout-h {
+    display: flex;
+    flex-direction: row;
+}
+
+.layout-v {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-gap-2 {
+    gap: 2px;
+}
+
+.flex-gap-8 {
+    gap: 8px;
+}
+
+.flex-gap-16 {
+    gap: 16px;
+}
+
+.flex-1 {
+    flex: 1 1 auto;
+}
+
+pre {
+    display: block;
+    margin: 0;
+    color: #fff;
+}
+
+pre {
+    white-space: pre-wrap;       /* Triggers wrapping on modern browsers */
+    overflow-x: auto;            /* Fallback scrollbar if a word is too long */
+    word-wrap: break-word;       /* Breaks abnormally long single words if needed */
+}
+
+
+.flex-align-center {
+    align-items: center;
+}
+
+.flex-align-start {
+    align-items: start;
+}
+
+.flex-space-between {
+    justify-content: space-between;
+}
+
+.padding-8 {
+    padding: 8px;
+}
+
+button {
+    border: none;
+
+    background-color: #80808020;
+    padding: 6px 8px;
+    border-radius: 4px;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+button:not(:disabled):hover {
+    background-color: #80808040;
+}
+
+button:disabled {
+    opacity: 50%;
+}
+
+meter, progress {
+    height: 2px; 
+    width: 128px;
+    -webkit-appearance: none; 
+    appearance: none; 
+}
+
+
+/*  */
+
+.omni-dialog-frame {
+    background-color: #151515;
+    border: solid 1px #202020;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.omni-dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding: 16px;
+}
+
+.omni-dialog-button-area {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+}
+
+.omni-dialog-button-area > button {
+    flex: 1 1 auto;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+/* ------------------------------------------------------- */
+/* Layout / shell */
+
+.omni-layout-row {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.omni-panel-fill {
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.omni-table-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+}
+
+.omni-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.omni-table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    text-align: left;
+    padding: 4px;
+    background-color: #1a1a1a;
+    color: #aaa;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.omni-table td {
+    padding: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.omni-table td:last-child {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    word-break: break-word;
+}
+
+.omni-table tr:hover td {
+    background-color: #1a1a1a;
+}
+
+.omni-table tr.selected td {
+    background-color: #2a2a2a;
+}
+
+.omni-table-row {
+    transition: background-color 0.15s ease;
+    cursor: pointer;
+}
+
+.omni-json-key {
+    color: #cccccc;
+}
+
+.omni-json-string {
+    color: #808080;
+}
+
+.omni-json-number {
+    color: #808080;
+}
+
+.omni-json-boolean {
+    color: #808080;
+}
+
+.omni-json-null {
+    color: #404040;
+}
+
+
+/* ------------------------------------------------------- */
+/* Data / table patterns */
+
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: normal;
+    background-color: #80808020;
+    color: #808080;
+}
+
+.category-badge.platform {
+    background-color: #80808020;
+    color: #808080;
+}
+
+.category-badge.kernel {
+    background-color: rgba(226, 78, 255, 0.15);
+    color: #E24EFF;
+}
+
+/* ------------------------------------------------------- */
+/* Form controls */
+
+.comp-selectbox option {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.comp-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    color: #fff;
+    min-width: 0;
+}
+
+.comp-checkbox:hover {
+    background-color: #80808020;
+}
+
+.comp-checkbox input[type="checkbox"],
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    background-color: #2a2a2a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.comp-checkbox span,
+.comp-checkbox label,
+.comp-checkbox > *:not(input[type="checkbox"]) {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.comp-checkbox input[type="checkbox"]:checked,
+input[type="checkbox"]:checked {
+    background-color: #606060;
+    border-color: #808080;
+}
+
+.comp-checkbox input[type="checkbox"]:checked::after,
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    color: #fff;
+    font-size: 10px;
+    display: block;
+}
+
+/* ------------------------------------------------------- */
+/* Tabs / labels */
+
+.comp-tab-bar {
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    /* padding: 8px; */
+}
+
+.comp-tab-button {
+    flex: 1;
+    padding: 4px 8px;
+    background-color: #202020;
+    border: 1px solid #303030;
+    border-radius: 4px;
+    color: #aaa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.comp-tab-button:hover {
+    background-color: #2a2a2a;
+    border-color: #404040;
+}
+
+.comp-tab-button.active {
+    background-color: #404040;
+    color: #fff;
+    border-color: #505050;
+}
+
+.sidebar-label {
+    font-size: 11px;
+    color: #aaa;
+    margin: 4px 0 2px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    white-space: nowrap;      /* Keep text on one line */
+    overflow: hidden;         /* Hide overflow content */
+    text-overflow: ellipsis;  /* Show ... when truncated */
+}
+
+
+
+.omni-panel-fill {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.omni-table-scroll,
+.omni-tree-view {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+}
+
+ul > p, li > p {
+    padding: 4px;
+}
+
+.comp-color-input {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--lde-radius-sm, 4px);
+    background: transparent;
+}

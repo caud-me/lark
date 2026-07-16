@@ -11,13 +11,20 @@ import { ProcessPolicy } from '../policies/ProcessPolicy.js';
  * - Maintain raw process state
  */
 export class ProcessService {
-    constructor(processManager, appService, serviceRegistry) {
+    /**
+     * @param {ProcessManager} processManager 
+     * @param {ApplicationService} applicationService 
+     * @param {ServiceRegistry} serviceRegistry 
+     * @param {RuntimeLoaderService} runtimeLoaderService
+     */
+    constructor(processManager, applicationService, serviceRegistry, runtimeLoaderService) {
         this.processManager = processManager;
-        this.appService = appService;
+        this.applicationService = applicationService;
         this.serviceRegistry = serviceRegistry;
+        this.runtimeLoaderService = runtimeLoaderService;
 
         // Coordinate updates for window counts
-        EventBus.on('windowManager:create', (payload) => {
+        EventBus.on('window.created', (payload) => {
             if (payload.data && payload.data.pid) {
                 const proc = this.getProcess(payload.data.pid);
                 if (proc) {
@@ -26,7 +33,7 @@ export class ProcessService {
             }
         });
 
-        EventBus.on('windowManager:close', (payload) => {
+        EventBus.on('window.closed', (payload) => {
             if (payload.data && payload.data.pid) {
                 const proc = this.getProcess(payload.data.pid);
                 if (proc) {
@@ -51,28 +58,93 @@ export class ProcessService {
      * @returns {Promise<number|null>} PID
      */
     async startProcess(appId, options = {}) {
-        const appInfo = this.appService.getAppById(appId);
+        const appInfo = this.applicationService.getApplication(appId);
         if (!appInfo) {
-            EventBus.emit('processService:error', { severity: 'Error', source: 'ProcessService', message: `App ${appId} not found in ServiceRegistry.` });
-            return null;
+            throw new Error(`Cannot start process: App ${appId} not found.`);
+        }
+
+        if (appInfo.singleton) {
+            const existingProc = this.processManager.list().find(p => p.appId === appId);
+            if (existingProc) {
+                const windowService = this.serviceRegistry.get('WindowService');
+                if (windowService) {
+                    windowService.restoreWindowByPid(existingProc.pid);
+                    windowService.focusWindowByPid(existingProc.pid);
+                }
+
+                return existingProc.pid;
+
+                return existingProc.pid;
+            }
         }
 
         const sessionService = this.serviceRegistry.get('SessionService');
+        const securityService = this.serviceRegistry.get('SecurityService');
+        const sessionContext = securityService ? securityService.getSessionContext() : null;
         const session = sessionService ? sessionService.getCurrentSession() : null;
         const ownerUsername = session ? session.user.username : 'system';
 
-        const processOptions = {
-            background: options.background !== undefined ? options.background : (appInfo.background || false),
-            parentPid: options.parentPid || null
+        let targetRole = 'USER';
+        let source = 'unknown';
+
+        if (sessionContext) {
+            targetRole = sessionContext.role;
+            source = sessionContext.source;
+        } else {
+            targetRole = 'SYSTEM';
+            source = 'kernel_fallback';
+        }
+
+        if (appInfo.requiredRole && securityService) {
+            const securityManager = securityService.securityManager;
+            if (securityManager.compareRoles(targetRole, appInfo.requiredRole) < 0) {
+                throw new Error(`Cannot start ${appInfo.name}: Requires ${appInfo.requiredRole} privileges.`);
+            }
+        }
+
+        let elevated = false;
+        if (appInfo.requiredRole === 'ADMINISTRATOR' && securityService && securityService.isAdministrator({ role: targetRole })) {
+            const dialogService = this.serviceRegistry.get('DialogService');
+            if (dialogService) {
+                const confirmed = await dialogService.showConfirmation(
+                    'Elevation Required',
+                    `${appInfo.name} requires Administrator privileges to run. Allow?`
+                );
+                if (!confirmed) {
+                    throw new Error(`Launch cancelled: ${appInfo.name} requires elevation.`);
+                }
+                elevated = true;
+            }
+        }
+
+        const securityContext = {
+            role: targetRole,
+            elevated,
+            source,
+            identity: ownerUsername
         };
 
-        const pid = this.processManager.startProcess(appId, appInfo.name, ownerUsername, processOptions);
-        EventBus.emit('processService:start', { severity: 'Info', source: 'ProcessService', message: `Started process ${pid} (${appId})` });
+        const processOptions = {
+            background: options.background !== undefined ? options.background : (appInfo.background || false),
+            parentPid: options.parentPid || null,
+            securityContext,
+            sessionId: options.sessionId || (session ? session.id : null),
+            desktopEnvironmentId: options.desktopEnvironmentId || null
+        };
+
+        // ProcessManager.startProcess() already emits 'process.started' with the full process record.
+        // We do NOT emit it again here — doing so would cause every subscriber to handle one launch twice.
+        const processName = appInfo.title || appInfo.name || appInfo.id;
+        const pid = this.processManager.startProcess(appId, processName, ownerUsername, processOptions);
+        
+        if (elevated && securityService) {
+            securityService.elevate(pid);
+        }
         try {
-            const module = await import(appInfo.entryPoint);
+            const module = await this.runtimeLoaderService.loadApplication(appInfo);
             if (module.default && typeof module.default.run === 'function') {
                 // Do not await run so the app can live in the background
-                module.default.run(this.serviceRegistry, pid).catch(e => {
+                module.default.run(this.serviceRegistry, pid, options || {}).catch(e => {
                     EventBus.emit('processService:error', { severity: 'Error', source: 'ProcessService', message: `App ${appId} runtime error: ${e.message}` });
                 });
             } else {
@@ -85,11 +157,46 @@ export class ProcessService {
     }
 
     /**
-     * Ends a process (legacy).
-     * @param {number} pid 
+     * Starts a Desktop Environment as a tracked process, bypassing the application pipeline.
+     * @param {Object} desktopEnv - The Desktop Environment provider metadata (e.g. from DesktopEnvironmentRegistry)
+     * @param {object} options 
+     * @returns {Promise<number|null>} PID
      */
-    endProcess(pid) {
-        this.terminateProcess(pid);
+    async startDesktopEnvironment(desktopEnv, options = {}) {
+        const sessionService = this.serviceRegistry.get('SessionService');
+        const session = sessionService ? sessionService.getCurrentSession() : null;
+        const ownerUsername = session ? session.user.username : 'system';
+
+        const securityContext = {
+            role: 'USER',
+            elevated: false,
+            source: 'desktop_orchestrator',
+            identity: ownerUsername
+        };
+
+        const processOptions = {
+            background: true,
+            parentPid: null,
+            securityContext,
+            sessionId: options.sessionId || null,
+            desktopEnvironmentId: desktopEnv.id
+        };
+
+        const pid = this.processManager.startProcess(desktopEnv.id, desktopEnv.name, ownerUsername, processOptions);
+
+        try {
+            // Natively load the desktop entry point
+            const module = await import(desktopEnv.entryPoint);
+            if (module.default && typeof module.default.run === 'function') {
+                module.default.run(this.serviceRegistry, pid).catch(e => {
+                    EventBus.emit('processService:error', { severity: 'Error', source: 'ProcessService', message: `Desktop ${desktopEnv.id} runtime error: ${e.message}` });
+                });
+            }
+        } catch (e) {
+            EventBus.emit('processService:error', { severity: 'Error', source: 'ProcessService', message: `Failed to load desktop environment ${desktopEnv.id}: ${e.message}` });
+        }
+
+        return pid;
     }
 
     /**
@@ -101,13 +208,13 @@ export class ProcessService {
         const proc = this.processManager.getProcess(pid);
         if (!proc) return;
 
-        const appInfo = this.appService.getAppById(proc.appId);
-        if (!force && !ProcessPolicy.canTerminate(appInfo)) {
+        const appInfo = this.applicationService.getApplication(proc.appId);
+        if (!force && appInfo && !ProcessPolicy.canTerminate(appInfo)) {
             EventBus.emit('processService:error', { severity: 'Error', source: 'ProcessService', message: `Access Denied: ${proc.name} is a protected process and cannot be terminated.` });
             throw new Error(`Access Denied: ${proc.name} is a protected process and cannot be terminated.`);
         }
 
-        EventBus.emit('processService:terminate', { severity: 'Info', source: 'ProcessService', message: `Terminating process ${pid}` });
+        EventBus.emit('process.terminated', { severity: 'Info', source: 'ProcessService', message: `Terminating process ${pid}`, data: { pid } });
         this.processManager.terminateProcess(pid, force);
     }
 

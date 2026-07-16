@@ -1,0 +1,18 @@
+{
+    "id": "com.example.widgetapp",
+    "name": "Widget App",
+    "version": "1.0.0",
+    "type": "extension",
+    "minimumOsVersion": "1.0.0",
+    "sdkVersion": "1.0",
+    "extensions": [
+        {
+            "type": "Widget",
+            "id": "example-widget",
+            "name": "Example Widget",
+            "entryPoint": "/Widget.js",
+            "width": 2,
+            "height": 2
+        }
+    ]
+}

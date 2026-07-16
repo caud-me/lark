@@ -34,10 +34,20 @@ class ServiceRegistryClass {
      */
     get(name) {
         if (!this.services.has(name)) {
-            EventBus.emit('registry:notFound', { severity: 'Error', source: 'ServiceRegistry', message: `Service ${name} not found.` });
+            // Warning (not Error) — a not-yet-registered service is often an expected
+            // transitional state during boot, not a system failure.
+            EventBus.emit('registry:notFound', { severity: 'Warning', source: 'ServiceRegistry', message: `Service ${name} not found.` });
             return null;
         }
         return this.services.get(name);
+    }
+
+    /**
+     * Retrieves all registered services.
+     * @returns {Map<string, object>}
+     */
+    getAll() {
+        return this.services;
     }
 }
 

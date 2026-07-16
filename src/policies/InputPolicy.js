@@ -1,12 +1,13 @@
 import { EventBus } from '../kernel/SystemEventBus.js';
+import { EnvironmentType } from '../system/EnvironmentType.js';
 
 /**
  * InputPolicy
  * 
  * Responsibility:
- * Owns session-level input decisions. Blocks browser events when the session is locked, 
- * except for specific windows designated as 'lockAllowed'.
- * 
+ * Owns session-level input decisions. Blocks browser events unless the clicked target's 
+ * owner environment type matches the currently active environment type.
+ *
  * Does NOT:
  * - Manage window state
  * - Manage session state
@@ -14,39 +15,30 @@ import { EventBus } from '../kernel/SystemEventBus.js';
 export class InputPolicy {
     constructor(registry) {
         this.registry = registry;
-        this.sessionLocked = false;
-        
-        EventBus.on('session.locked', () => {
-            this.sessionLocked = true;
-        });
-
-        EventBus.on('session.unlocked', () => {
-            this.sessionLocked = false;
-        });
-
         this._setupInputPolicy();
     }
 
     _setupInputPolicy() {
         const interceptor = (e) => {
-            if (!this.sessionLocked) return;
+            try {
+                const envManager = this.registry.get('EnvironmentManager');
+                const activeEnv = envManager ? envManager.getActiveEnvironment() : null;
+                
+                // If there's no active environment set (early boot), allow events
+                if (!activeEnv) return;
 
-            const windowService = this.registry.get('WindowService');
-            if (!windowService) return;
+                const activeType = activeEnv.type;
+                const targetType = this._getTargetEnvironmentType(e.target);
 
-            let isAllowed = false;
-            for (const win of windowService.windowManager.windows.values()) {
-                if (win.options && win.options.inputPolicy === 'lockAllowed') {
-                    if (win.frame && win.frame.element && win.frame.element.contains(e.target)) {
-                        isAllowed = true;
-                        break;
-                    }
+                // Check if they match
+                const isAllowed = (activeType === targetType);
+
+                if (!isAllowed) {
+                    e.stopPropagation();
+                    e.preventDefault();
                 }
-            }
-
-            if (!isAllowed) {
-                e.stopPropagation();
-                e.preventDefault();
+            } catch (err) {
+                console.error('[InputPolicy] Interceptor error:', err);
             }
         };
 
@@ -60,5 +52,36 @@ export class InputPolicy {
         events.forEach(evt => {
             document.addEventListener(evt, interceptor, true); // capture phase
         });
+    }
+
+    _getTargetEnvironmentType(target) {
+        // 1. Element with explicit environment type metadata
+        const typeEl = target.closest('[data-environment-type]');
+        if (typeEl) {
+            const typeStr = typeEl.getAttribute('data-environment-type').toUpperCase();
+            const symbol = EnvironmentType[typeStr];
+            if (symbol) return symbol;
+        }
+
+        // 2. Window frame — use the public WindowService API to avoid accessing
+        //    WindowManager internals directly.
+        const frame = target.closest('.lde-window-frame');
+        if (frame) {
+            const windowService = this.registry.get('WindowService');
+            if (windowService) {
+                const envType = windowService.getWindowEnvironmentType(frame.id);
+                if (envType) return envType;
+            }
+        }
+
+        // 3. Platform Shell containers
+        if (target.closest('#oobe-container')) return EnvironmentType.BOOT;
+        if (target.closest('#welcome-container')) return EnvironmentType.WELCOME;
+        if (target.closest('#login-container')) return EnvironmentType.LOGIN;
+        if (target.closest('#lock-container')) return EnvironmentType.LOCK;
+        if (target.closest('#recovery-container')) return EnvironmentType.RECOVERY;
+
+        // 4. Fallback/default is DESKTOP (taskbar, wallpaper, desktop layout)
+        return EnvironmentType.DESKTOP;
     }
 }

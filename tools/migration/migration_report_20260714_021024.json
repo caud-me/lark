@@ -1,0 +1,1037 @@
+{
+  "tool_version": "2.0",
+  "python_version": "3.12.0",
+  "timestamp": "2026-07-14T02:10:24.557516",
+  "repository_root": "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental",
+  "map_file": "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/tools/migration/migration_map.json",
+  "mode": "execute",
+  "duration_seconds": 2.297,
+  "moved_files": [
+    {
+      "from": "src/managers/EnvironmentManager.js",
+      "to": "src/platform/environments/EnvironmentManager.js"
+    },
+    {
+      "from": "src/managers/WindowManager.js",
+      "to": "src/platform/window/WindowManager.js"
+    },
+    {
+      "from": "src/managers/DialogManager.js",
+      "to": "src/platform/dialog/DialogManager.js"
+    },
+    {
+      "from": "src/managers/ContextMenuManager.js",
+      "to": "src/platform/contextmenu/ContextMenuManager.js"
+    },
+    {
+      "from": "src/managers/ClipboardManager.js",
+      "to": "src/platform/clipboard/ClipboardManager.js"
+    },
+    {
+      "from": "src/managers/ShortcutManager.js",
+      "to": "src/platform/shortcuts/ShortcutManager.js"
+    },
+    {
+      "from": "src/managers/ProcessManager.js",
+      "to": "src/platform/process/ProcessManager.js"
+    },
+    {
+      "from": "src/managers/SessionManager.js",
+      "to": "src/platform/session/SessionManager.js"
+    },
+    {
+      "from": "src/managers/SecurityManager.js",
+      "to": "src/platform/security/SecurityManager.js"
+    },
+    {
+      "from": "src/managers/UserManager.js",
+      "to": "src/platform/users/UserManager.js"
+    },
+    {
+      "from": "src/managers/UserProfileManager.js",
+      "to": "src/platform/users/UserProfileManager.js"
+    },
+    {
+      "from": "src/managers/UserSettingsManager.js",
+      "to": "src/platform/users/UserSettingsManager.js"
+    },
+    {
+      "from": "src/managers/LogManager.js",
+      "to": "src/platform/logging/LogManager.js"
+    },
+    {
+      "from": "src/managers/NetworkManager.js",
+      "to": "src/platform/network/NetworkManager.js"
+    },
+    {
+      "from": "src/managers/SettingsManager.js",
+      "to": "src/platform/settings/SettingsManager.js"
+    },
+    {
+      "from": "src/managers/DiskManager.js",
+      "to": "src/platform/filesystem/DiskManager.js"
+    },
+    {
+      "from": "src/managers/ApplicationDatabaseManager.js",
+      "to": "src/platform/packages/ApplicationDatabaseManager.js"
+    },
+    {
+      "from": "src/managers/RuntimeLoaderManager.js",
+      "to": "src/platform/packages/RuntimeLoaderManager.js"
+    },
+    {
+      "from": "src/managers/RepositoryManager.js",
+      "to": "src/platform/packages/RepositoryManager.js"
+    },
+    {
+      "from": "src/managers/PermissionManager.js",
+      "to": "src/platform/packages/PermissionManager.js"
+    },
+    {
+      "from": "src/managers/TrustManager.js",
+      "to": "src/platform/packages/TrustManager.js"
+    },
+    {
+      "from": "src/managers/ThemeRepositoryManager.js",
+      "to": "src/platform/theming/ThemeRepositoryManager.js"
+    },
+    {
+      "from": "src/managers/WidgetManager.js",
+      "to": "src/platform/widgets/WidgetManager.js"
+    },
+    {
+      "from": "src/managers/ExtensionRepositoryManager.js",
+      "to": "src/platform/extensions/ExtensionRepositoryManager.js"
+    },
+    {
+      "from": "src/managers/IPCManager.js",
+      "to": "src/platform/ipc/IPCManager.js"
+    },
+    {
+      "from": "src/managers/NotificationManager.js",
+      "to": "src/platform/notifications/NotificationManager.js"
+    },
+    {
+      "from": "src/managers/RecoveryManager.js",
+      "to": "src/platform/recovery/RecoveryManager.js"
+    },
+    {
+      "from": "src/managers/RestoreManager.js",
+      "to": "src/platform/recovery/RestoreManager.js"
+    },
+    {
+      "from": "src/services/ErrorService.js",
+      "to": "src/platform/logging/ErrorService.js"
+    },
+    {
+      "from": "src/services/LogService.js",
+      "to": "src/platform/logging/LogService.js"
+    },
+    {
+      "from": "src/services/NetworkService.js",
+      "to": "src/platform/network/NetworkService.js"
+    },
+    {
+      "from": "src/services/DownloadService.js",
+      "to": "src/platform/network/DownloadService.js"
+    },
+    {
+      "from": "src/services/WindowService.js",
+      "to": "src/platform/window/WindowService.js"
+    },
+    {
+      "from": "src/services/DialogService.js",
+      "to": "src/platform/dialog/DialogService.js"
+    },
+    {
+      "from": "src/services/ContextMenuService.js",
+      "to": "src/platform/contextmenu/ContextMenuService.js"
+    },
+    {
+      "from": "src/services/ClipboardService.js",
+      "to": "src/platform/clipboard/ClipboardService.js"
+    },
+    {
+      "from": "src/services/ShortcutService.js",
+      "to": "src/platform/shortcuts/ShortcutService.js"
+    },
+    {
+      "from": "src/services/SessionService.js",
+      "to": "src/platform/session/SessionService.js"
+    },
+    {
+      "from": "src/services/UserEnvironmentService.js",
+      "to": "src/platform/session/UserEnvironmentService.js"
+    },
+    {
+      "from": "src/services/PowerService.js",
+      "to": "src/platform/session/PowerService.js"
+    },
+    {
+      "from": "src/services/SecurityService.js",
+      "to": "src/platform/security/SecurityService.js"
+    },
+    {
+      "from": "src/services/UserService.js",
+      "to": "src/platform/users/UserService.js"
+    },
+    {
+      "from": "src/services/UserProfileService.js",
+      "to": "src/platform/users/UserProfileService.js"
+    },
+    {
+      "from": "src/services/UserSettingsService.js",
+      "to": "src/platform/users/UserSettingsService.js"
+    },
+    {
+      "from": "src/services/BootService.js",
+      "to": "src/platform/boot/BootService.js"
+    },
+    {
+      "from": "src/services/ShutdownService.js",
+      "to": "src/platform/boot/ShutdownService.js"
+    },
+    {
+      "from": "src/services/FileService.js",
+      "to": "src/platform/filesystem/FileService.js"
+    },
+    {
+      "from": "src/services/DiskService.js",
+      "to": "src/platform/filesystem/DiskService.js"
+    },
+    {
+      "from": "src/services/SettingsService.js",
+      "to": "src/platform/settings/SettingsService.js"
+    },
+    {
+      "from": "src/services/ThemeService.js",
+      "to": "src/platform/theming/ThemeService.js"
+    },
+    {
+      "from": "src/services/ExtensionService.js",
+      "to": "src/platform/extensions/ExtensionService.js"
+    },
+    {
+      "from": "src/services/WidgetService.js",
+      "to": "src/platform/widgets/WidgetService.js"
+    },
+    {
+      "from": "src/services/IPCService.js",
+      "to": "src/platform/ipc/IPCService.js"
+    },
+    {
+      "from": "src/services/CommandService.js",
+      "to": "src/platform/ipc/CommandService.js"
+    },
+    {
+      "from": "src/services/NotificationService.js",
+      "to": "src/platform/notifications/NotificationService.js"
+    },
+    {
+      "from": "src/services/ApplicationDatabaseService.js",
+      "to": "src/platform/packages/ApplicationDatabaseService.js"
+    },
+    {
+      "from": "src/services/ApplicationService.js",
+      "to": "src/platform/packages/ApplicationService.js"
+    },
+    {
+      "from": "src/services/ApplicationIntentService.js",
+      "to": "src/platform/packages/ApplicationIntentService.js"
+    },
+    {
+      "from": "src/services/AssociationService.js",
+      "to": "src/platform/packages/AssociationService.js"
+    },
+    {
+      "from": "src/services/RuntimeLoaderService.js",
+      "to": "src/platform/packages/RuntimeLoaderService.js"
+    },
+    {
+      "from": "src/services/PackageService.js",
+      "to": "src/platform/packages/PackageService.js"
+    },
+    {
+      "from": "src/services/RepositoryService.js",
+      "to": "src/platform/packages/RepositoryService.js"
+    },
+    {
+      "from": "src/services/PermissionService.js",
+      "to": "src/platform/packages/PermissionService.js"
+    },
+    {
+      "from": "src/services/TrustService.js",
+      "to": "src/platform/packages/TrustService.js"
+    },
+    {
+      "from": "src/services/RecoveryService.js",
+      "to": "src/platform/recovery/RecoveryService.js"
+    },
+    {
+      "from": "src/services/RestoreService.js",
+      "to": "src/platform/recovery/RestoreService.js"
+    },
+    {
+      "from": "src/services/SearchService.js",
+      "to": "src/platform/search/SearchService.js"
+    },
+    {
+      "from": "src/services/CapabilityService.js",
+      "to": "src/platform/capabilities/CapabilityService.js"
+    },
+    {
+      "from": "src/services/DesktopEnvironmentService.js",
+      "to": "src/platform/desktop/DesktopEnvironmentService.js"
+    },
+    {
+      "from": "src/services/StartupApplicationService.js",
+      "to": "src/platform/desktop/StartupApplicationService.js"
+    },
+    {
+      "from": "src/services/DeveloperOptionsService.js",
+      "to": "src/developer/DeveloperOptionsService.js"
+    },
+    {
+      "from": "src/services/providers/ApplicationSearchProvider.js",
+      "to": "src/platform/search/providers/ApplicationSearchProvider.js"
+    },
+    {
+      "from": "src/services/providers/SessionSearchProvider.js",
+      "to": "src/platform/search/providers/SessionSearchProvider.js"
+    },
+    {
+      "from": "src/services/providers/CommandSearchProvider.js",
+      "to": "src/platform/search/providers/CommandSearchProvider.js"
+    },
+    {
+      "from": "src/services/providers/FileSearchProvider.js",
+      "to": "src/platform/search/providers/FileSearchProvider.js"
+    },
+    {
+      "from": "src/services/providers/PackageSearchProvider.js",
+      "to": "src/platform/search/providers/PackageSearchProvider.js"
+    },
+    {
+      "from": "src/services/commands/DiskCommands.js",
+      "to": "src/commands/DiskCommands.js"
+    },
+    {
+      "from": "src/services/commands/FileCommands.js",
+      "to": "src/commands/FileCommands.js"
+    },
+    {
+      "from": "src/services/commands/HelpCommands.js",
+      "to": "src/commands/HelpCommands.js"
+    },
+    {
+      "from": "src/services/commands/IPCCommands.js",
+      "to": "src/commands/IPCCommands.js"
+    },
+    {
+      "from": "src/services/commands/NotificationCommands.js",
+      "to": "src/commands/NotificationCommands.js"
+    },
+    {
+      "from": "src/services/commands/PowerCommands.js",
+      "to": "src/commands/PowerCommands.js"
+    },
+    {
+      "from": "src/services/commands/ProcessCommands.js",
+      "to": "src/commands/ProcessCommands.js"
+    },
+    {
+      "from": "src/services/commands/SystemCommands.js",
+      "to": "src/commands/SystemCommands.js"
+    },
+    {
+      "from": "src/services/commands/UserCommands.js",
+      "to": "src/commands/UserCommands.js"
+    },
+    {
+      "from": "src/system/capabilities/CapabilityRegistry.js",
+      "to": "src/platform/capabilities/CapabilityRegistry.js"
+    },
+    {
+      "from": "src/system/capabilities/providers/CapabilityProvider.js",
+      "to": "src/platform/capabilities/providers/CapabilityProvider.js"
+    },
+    {
+      "from": "src/system/capabilities/providers/NetworkCapabilityProvider.js",
+      "to": "src/platform/capabilities/providers/NetworkCapabilityProvider.js"
+    },
+    {
+      "from": "src/system/capabilities/providers/DialogCapabilityProvider.js",
+      "to": "src/platform/capabilities/providers/DialogCapabilityProvider.js"
+    },
+    {
+      "from": "src/system/capabilities/providers/NotificationCapabilityProvider.js",
+      "to": "src/platform/capabilities/providers/NotificationCapabilityProvider.js"
+    },
+    {
+      "from": "src/system/capabilities/providers/ClipboardCapabilityProvider.js",
+      "to": "src/platform/capabilities/providers/ClipboardCapabilityProvider.js"
+    },
+    {
+      "from": "src/system/loaders/BuiltinRuntimeLoader.js",
+      "to": "src/platform/packages/loaders/BuiltinRuntimeLoader.js"
+    },
+    {
+      "from": "src/system/loaders/LrfsRuntimeLoader.js",
+      "to": "src/platform/packages/loaders/LrfsRuntimeLoader.js"
+    },
+    {
+      "from": "src/system/repositories/sources/BuiltinRepositorySource.js",
+      "to": "src/platform/packages/repositories/sources/BuiltinRepositorySource.js"
+    },
+    {
+      "from": "src/system/repositories/official.json",
+      "to": "src/platform/packages/repositories/official.json"
+    },
+    {
+      "from": "src/system/repositories/packages/example.notes.ldepkg",
+      "to": "src/platform/packages/repositories/packages/example.notes.ldepkg"
+    },
+    {
+      "from": "src/system/validation/ManifestValidator.js",
+      "to": "src/platform/filesystem/validation/ManifestValidator.js"
+    },
+    {
+      "from": "src/system/validation/rules/ExtensionRule.js",
+      "to": "src/platform/filesystem/validation/rules/ExtensionRule.js"
+    },
+    {
+      "from": "src/system/validation/rules/PermissionRule.js",
+      "to": "src/platform/filesystem/validation/rules/PermissionRule.js"
+    },
+    {
+      "from": "src/system/validation/rules/RequiredFieldRule.js",
+      "to": "src/platform/filesystem/validation/rules/RequiredFieldRule.js"
+    },
+    {
+      "from": "src/system/validation/rules/RuntimeRule.js",
+      "to": "src/platform/filesystem/validation/rules/RuntimeRule.js"
+    },
+    {
+      "from": "src/system/validation/rules/SdkVersionRule.js",
+      "to": "src/platform/filesystem/validation/rules/SdkVersionRule.js"
+    },
+    {
+      "from": "src/system/themes/BuiltinThemeSource.js",
+      "to": "src/platform/theming/themes/BuiltinThemeSource.js"
+    },
+    {
+      "from": "src/system/themes/dark.ldetheme",
+      "to": "src/platform/theming/themes/dark.ldetheme"
+    },
+    {
+      "from": "src/system/themes/light.ldetheme",
+      "to": "src/platform/theming/themes/light.ldetheme"
+    },
+    {
+      "from": "src/system/widgets/WidgetRegistry.js",
+      "to": "src/platform/widgets/WidgetRegistry.js"
+    },
+    {
+      "from": "src/system/widgets/ClockWidget.js",
+      "to": "src/platform/widgets/ClockWidget.js"
+    },
+    {
+      "from": "src/system/widgets/CalendarWidget.js",
+      "to": "src/platform/widgets/CalendarWidget.js"
+    },
+    {
+      "from": "src/system/widgets/WeatherWidget.js",
+      "to": "src/platform/widgets/WeatherWidget.js"
+    },
+    {
+      "from": "src/system/widgets/NotesWidget.js",
+      "to": "src/platform/widgets/NotesWidget.js"
+    },
+    {
+      "from": "src/system/screens/ShutdownScreen.js",
+      "to": "src/platform/desktop/shell/ShutdownScreen.js"
+    },
+    {
+      "from": "src/system/environments/desktop/Desktop.js",
+      "to": "src/platform/environments/desktop/Desktop.js"
+    },
+    {
+      "from": "src/system/environments/desktop/DesktopEnvironmentRegistry.js",
+      "to": "src/platform/environments/desktop/DesktopEnvironmentRegistry.js"
+    },
+    {
+      "from": "src/system/environments/platform/PlatformEnvironmentRegistry.js",
+      "to": "src/platform/environments/platform/PlatformEnvironmentRegistry.js"
+    },
+    {
+      "from": "src/system/environments/platform/Login.js",
+      "to": "src/platform/environments/platform/Login.js"
+    },
+    {
+      "from": "src/system/environments/platform/Lock.js",
+      "to": "src/platform/environments/platform/Lock.js"
+    },
+    {
+      "from": "src/system/environments/platform/OOBE.js",
+      "to": "src/platform/environments/platform/OOBE.js"
+    },
+    {
+      "from": "src/system/environments/platform/Recovery.js",
+      "to": "src/platform/environments/platform/Recovery.js"
+    },
+    {
+      "from": "src/system/environments/platform/Shutdown.js",
+      "to": "src/platform/environments/platform/Shutdown.js"
+    },
+    {
+      "from": "src/system/environments/platform/Welcome.js",
+      "to": "src/platform/environments/platform/Welcome.js"
+    },
+    {
+      "from": "src/ui/WindowFrame.js",
+      "to": "src/platform/window/WindowFrame.js"
+    },
+    {
+      "from": "src/ui/Taskbar.js",
+      "to": "src/platform/desktop/shell/Taskbar.js"
+    },
+    {
+      "from": "src/ui/Wallpaper.js",
+      "to": "src/platform/desktop/shell/Wallpaper.js"
+    },
+    {
+      "from": "src/ui/CommandPalette.js",
+      "to": "src/platform/search/CommandPalette.js"
+    },
+    {
+      "from": "src/ui/NotificationCenter.js",
+      "to": "src/platform/notifications/NotificationCenter.js"
+    },
+    {
+      "from": "src/ui/SettingsComponents.js",
+      "to": "src/platform/settings/SettingsComponents.js"
+    },
+    {
+      "from": "src/ui/dialogs/OpenWithDialog.js",
+      "to": "src/platform/window/dialogs/OpenWithDialog.js"
+    },
+    {
+      "from": "src/ui/dialogs/PropertiesDialog.js",
+      "to": "src/platform/window/dialogs/PropertiesDialog.js"
+    },
+    {
+      "from": "src/ui/boot/BootSplash.js",
+      "to": "src/platform/boot/BootSplash.js"
+    }
+  ],
+  "rewritten_files": [
+    {
+      "file": "src/platform/window/WindowManager.js",
+      "changes": 3
+    },
+    {
+      "file": "src/platform/dialog/DialogManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/contextmenu/ContextMenuManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/clipboard/ClipboardManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/shortcuts/ShortcutManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/process/ProcessManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/session/SessionManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/users/UserManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/settings/SettingsManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/packages/ApplicationDatabaseManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/widgets/WidgetManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/extensions/ExtensionRepositoryManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/recovery/RecoveryManager.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/logging/ErrorService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/logging/LogService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/network/NetworkService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/network/DownloadService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/window/WindowService.js",
+      "changes": 2
+    },
+    {
+      "file": "src/platform/dialog/DialogService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/contextmenu/ContextMenuService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/session/SessionService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/session/UserEnvironmentService.js",
+      "changes": 4
+    },
+    {
+      "file": "src/platform/session/PowerService.js",
+      "changes": 4
+    },
+    {
+      "file": "src/platform/security/SecurityService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/users/UserService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/users/UserProfileService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/users/UserSettingsService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/boot/BootService.js",
+      "changes": 9
+    },
+    {
+      "file": "src/platform/boot/ShutdownService.js",
+      "changes": 3
+    },
+    {
+      "file": "src/platform/filesystem/FileService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/filesystem/DiskService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/settings/SettingsService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/theming/ThemeService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/extensions/ExtensionService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/widgets/WidgetService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/ipc/IPCService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/ipc/CommandService.js",
+      "changes": 10
+    },
+    {
+      "file": "src/platform/notifications/NotificationService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/packages/ApplicationDatabaseService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/packages/ApplicationIntentService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/packages/AssociationService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/packages/PackageService.js",
+      "changes": 2
+    },
+    {
+      "file": "src/platform/packages/RepositoryService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/packages/PermissionService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/packages/TrustService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/recovery/RecoveryService.js",
+      "changes": 2
+    },
+    {
+      "file": "src/platform/recovery/RestoreService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/search/SearchService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/capabilities/CapabilityService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/desktop/StartupApplicationService.js",
+      "changes": 1
+    },
+    {
+      "file": "src/commands/SystemCommands.js",
+      "changes": 2
+    },
+    {
+      "file": "src/platform/environments/desktop/Desktop.js",
+      "changes": 4
+    },
+    {
+      "file": "src/platform/environments/platform/Shutdown.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/desktop/shell/Taskbar.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/desktop/shell/Wallpaper.js",
+      "changes": 1
+    },
+    {
+      "file": "src/platform/notifications/NotificationCenter.js",
+      "changes": 1
+    },
+    {
+      "file": "src/apps/system/filemanager/FileListComponent.js",
+      "changes": 2
+    },
+    {
+      "file": "src/apps/system/settings/AboutComponent.js",
+      "changes": 1
+    },
+    {
+      "file": "src/apps/system/settings/ApplicationsComponent.js",
+      "changes": 1
+    },
+    {
+      "file": "src/apps/system/settings/DeveloperComponent.js",
+      "changes": 1
+    },
+    {
+      "file": "src/apps/system/settings/GeneralComponent.js",
+      "changes": 1
+    },
+    {
+      "file": "src/apps/system/settings/PersonalizationComponent.js",
+      "changes": 1
+    },
+    {
+      "file": "src/apps/system/settings/RecoveryComponent.js",
+      "changes": 1
+    },
+    {
+      "file": "src/apps/system/settings/StorageComponent.js",
+      "changes": 1
+    },
+    {
+      "file": "src/apps/system/settings/UsersComponent.js",
+      "changes": 1
+    },
+    {
+      "file": "src/apps/system/settings/WidgetsComponent.js",
+      "changes": 1
+    },
+    {
+      "file": "src/developer/quality/HealthReporter.js",
+      "changes": 1
+    },
+    {
+      "file": "src/kernel/BootLoader.js",
+      "changes": 1
+    },
+    {
+      "file": "src/kernel/kernel.js",
+      "changes": 82
+    },
+    {
+      "file": "tests/bootlogger-logservice.test.js",
+      "changes": 2
+    }
+  ],
+  "deleted_files": [
+    "src/managers/EnvironmentManager.js",
+    "src/managers/WindowManager.js",
+    "src/managers/DialogManager.js",
+    "src/managers/ContextMenuManager.js",
+    "src/managers/ClipboardManager.js",
+    "src/managers/ShortcutManager.js",
+    "src/managers/ProcessManager.js",
+    "src/managers/SessionManager.js",
+    "src/managers/SecurityManager.js",
+    "src/managers/UserManager.js",
+    "src/managers/UserProfileManager.js",
+    "src/managers/UserSettingsManager.js",
+    "src/managers/LogManager.js",
+    "src/managers/NetworkManager.js",
+    "src/managers/SettingsManager.js",
+    "src/managers/DiskManager.js",
+    "src/managers/ApplicationDatabaseManager.js",
+    "src/managers/RuntimeLoaderManager.js",
+    "src/managers/RepositoryManager.js",
+    "src/managers/PermissionManager.js",
+    "src/managers/TrustManager.js",
+    "src/managers/ThemeRepositoryManager.js",
+    "src/managers/WidgetManager.js",
+    "src/managers/ExtensionRepositoryManager.js",
+    "src/managers/IPCManager.js",
+    "src/managers/NotificationManager.js",
+    "src/managers/RecoveryManager.js",
+    "src/managers/RestoreManager.js",
+    "src/services/ErrorService.js",
+    "src/services/LogService.js",
+    "src/services/NetworkService.js",
+    "src/services/DownloadService.js",
+    "src/services/WindowService.js",
+    "src/services/DialogService.js",
+    "src/services/ContextMenuService.js",
+    "src/services/ClipboardService.js",
+    "src/services/ShortcutService.js",
+    "src/services/SessionService.js",
+    "src/services/UserEnvironmentService.js",
+    "src/services/PowerService.js",
+    "src/services/SecurityService.js",
+    "src/services/UserService.js",
+    "src/services/UserProfileService.js",
+    "src/services/UserSettingsService.js",
+    "src/services/BootService.js",
+    "src/services/ShutdownService.js",
+    "src/services/FileService.js",
+    "src/services/DiskService.js",
+    "src/services/SettingsService.js",
+    "src/services/ThemeService.js",
+    "src/services/ExtensionService.js",
+    "src/services/WidgetService.js",
+    "src/services/IPCService.js",
+    "src/services/CommandService.js",
+    "src/services/NotificationService.js",
+    "src/services/ApplicationDatabaseService.js",
+    "src/services/ApplicationService.js",
+    "src/services/ApplicationIntentService.js",
+    "src/services/AssociationService.js",
+    "src/services/RuntimeLoaderService.js",
+    "src/services/PackageService.js",
+    "src/services/RepositoryService.js",
+    "src/services/PermissionService.js",
+    "src/services/TrustService.js",
+    "src/services/RecoveryService.js",
+    "src/services/RestoreService.js",
+    "src/services/SearchService.js",
+    "src/services/CapabilityService.js",
+    "src/services/DesktopEnvironmentService.js",
+    "src/services/StartupApplicationService.js",
+    "src/services/DeveloperOptionsService.js",
+    "src/services/providers/ApplicationSearchProvider.js",
+    "src/services/providers/SessionSearchProvider.js",
+    "src/services/providers/CommandSearchProvider.js",
+    "src/services/providers/FileSearchProvider.js",
+    "src/services/providers/PackageSearchProvider.js",
+    "src/services/commands/DiskCommands.js",
+    "src/services/commands/FileCommands.js",
+    "src/services/commands/HelpCommands.js",
+    "src/services/commands/IPCCommands.js",
+    "src/services/commands/NotificationCommands.js",
+    "src/services/commands/PowerCommands.js",
+    "src/services/commands/ProcessCommands.js",
+    "src/services/commands/SystemCommands.js",
+    "src/services/commands/UserCommands.js",
+    "src/system/capabilities/CapabilityRegistry.js",
+    "src/system/capabilities/providers/CapabilityProvider.js",
+    "src/system/capabilities/providers/NetworkCapabilityProvider.js",
+    "src/system/capabilities/providers/DialogCapabilityProvider.js",
+    "src/system/capabilities/providers/NotificationCapabilityProvider.js",
+    "src/system/capabilities/providers/ClipboardCapabilityProvider.js",
+    "src/system/loaders/BuiltinRuntimeLoader.js",
+    "src/system/loaders/LrfsRuntimeLoader.js",
+    "src/system/repositories/sources/BuiltinRepositorySource.js",
+    "src/system/repositories/official.json",
+    "src/system/repositories/packages/example.notes.ldepkg",
+    "src/system/validation/ManifestValidator.js",
+    "src/system/validation/rules/ExtensionRule.js",
+    "src/system/validation/rules/PermissionRule.js",
+    "src/system/validation/rules/RequiredFieldRule.js",
+    "src/system/validation/rules/RuntimeRule.js",
+    "src/system/validation/rules/SdkVersionRule.js",
+    "src/system/themes/BuiltinThemeSource.js",
+    "src/system/themes/dark.ldetheme",
+    "src/system/themes/light.ldetheme",
+    "src/system/widgets/WidgetRegistry.js",
+    "src/system/widgets/ClockWidget.js",
+    "src/system/widgets/CalendarWidget.js",
+    "src/system/widgets/WeatherWidget.js",
+    "src/system/widgets/NotesWidget.js",
+    "src/system/screens/ShutdownScreen.js",
+    "src/system/environments/desktop/Desktop.js",
+    "src/system/environments/desktop/DesktopEnvironmentRegistry.js",
+    "src/system/environments/platform/PlatformEnvironmentRegistry.js",
+    "src/system/environments/platform/Login.js",
+    "src/system/environments/platform/Lock.js",
+    "src/system/environments/platform/OOBE.js",
+    "src/system/environments/platform/Recovery.js",
+    "src/system/environments/platform/Shutdown.js",
+    "src/system/environments/platform/Welcome.js",
+    "src/ui/WindowFrame.js",
+    "src/ui/Taskbar.js",
+    "src/ui/Wallpaper.js",
+    "src/ui/CommandPalette.js",
+    "src/ui/NotificationCenter.js",
+    "src/ui/SettingsComponents.js",
+    "src/ui/dialogs/OpenWithDialog.js",
+    "src/ui/dialogs/PropertiesDialog.js",
+    "src/ui/boot/BootSplash.js"
+  ],
+  "removed_dirs": [
+    "src/system/repositories/sources",
+    "src/system/capabilities/providers",
+    "src/system/environments/platform",
+    "src/system/environments/desktop",
+    "src/system/validation/rules",
+    "src/system/repositories/packages",
+    "src/ui/dialogs",
+    "src/system/loaders",
+    "src/system/capabilities",
+    "src/services/providers",
+    "src/system/repositories",
+    "src/system/themes",
+    "src/services/commands",
+    "src/system/widgets",
+    "src/system/screens",
+    "src/system/validation",
+    "src/ui/boot",
+    "src/managers"
+  ],
+  "warnings": [
+    "29 unhandled relative path(s) found (see report)"
+  ],
+  "errors": [],
+  "import_coverage": {
+    "scanned": 524,
+    "updated": 284,
+    "skipped": 240,
+    "unknown_count": 28,
+    "unknown": [
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/environments/platform/PlatformEnvironmentRegistry.js:6: { id: 'sys.shutdown', type: 'platform-environment', entryPoint: '../system/environments/platform/Shutdown.js' },",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/services/PowerService.js:161: const { ShutdownPlatformEnvironment } = await import('./BootService.js');",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/kernel/kernel.js:187: this.repositoryManager.registerSource('builtin-official', new BuiltinRepositorySource('../src/system/repositories/official.json'));",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/environments/platform/PlatformEnvironmentRegistry.js:8: { id: 'sys.oobe', type: 'platform-environment', entryPoint: '../system/environments/platform/OOBE.js' },",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/kernel/AppRegistry.js:157: entryPoint: '../services/providers/PackageSearchProvider.js'",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/widgets/WidgetRegistry.js:29: entryPoint: '../../widgets/WeatherWidget.js',",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/environments/platform/PlatformEnvironmentRegistry.js:4: { id: 'sys.login', type: 'platform-environment', entryPoint: '../system/environments/platform/Login.js' },",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/environments/platform/PlatformEnvironmentRegistry.js:9: { id: 'sys.welcome', type: 'platform-environment', entryPoint: '../system/environments/platform/Welcome.js' }",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/sdk/index.js:1: export { ManifestBuilder } from './builders/ManifestBuilder.js';",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/kernel/AppRegistry.js:144: entryPoint: '../apps/system/SoftwareCenter.js',",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/widgets/WidgetRegistry.js:21: entryPoint: '../../widgets/CalendarWidget.js',",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/widgets/WidgetRegistry.js:37: entryPoint: '../../widgets/NotesWidget.js',",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/environments/platform/PlatformEnvironmentRegistry.js:7: { id: 'sys.recovery', type: 'platform-environment', entryPoint: '../system/environments/platform/Recovery.js' },",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/loaders/BuiltinRuntimeLoader.js:17: entryPoint = entryPoint.replace('../apps/', '../../apps/');",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/kernel/AppRegistry.js:113: entryPoint: '../apps/system/FileManager.js',",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/kernel/AppRegistry.js:65: entryPoint: '../apps/system/Terminal.js',",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/developer/quality/test-health.js:14: const kernelPath = '../kernel/kernel.js';",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/kernel/AppRegistry.js:126: entryPoint: '../services/providers/FileSearchProvider.js'",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/environments/platform/PlatformEnvironmentRegistry.js:5: { id: 'sys.lock', type: 'platform-environment', entryPoint: '../system/environments/platform/Lock.js' },",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/services/UserEnvironmentService.js:56: const { WelcomePlatformEnvironment } = await import('./BootService.js');",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/environments/desktop/DesktopEnvironmentRegistry.js:8: entryPoint: '../system/environments/desktop/Desktop.js'",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/kernel/AppRegistry.js:47: entryPoint: '../apps/system/TaskManager.js',",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/widgets/WidgetRegistry.js:13: entryPoint: '../../widgets/ClockWidget.js',",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/kernel/AppRegistry.js:95: entryPoint: '../apps/system/Settings.js',",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/developer/quality/test-health.js:13: const windowManagerPath = '../managers/WindowManager.js';",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/kernel/AppRegistry.js:83: entryPoint: '../services/providers/CommandSearchProvider.js'",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/system/loaders/BuiltinRuntimeLoader.js:16: if (entryPoint.startsWith('../apps/')) {",
+      "C:/Users/ar/Documents/GitHub/lark-desktop-environment - experimental/src/kernel/AppRegistry.js:29: entryPoint: '../apps/system/EventViewer.js',"
+    ]
+  },
+  "verification": {
+    "passed": true,
+    "failure_count": 0,
+    "checks": [
+      {
+        "name": "All destinations present",
+        "passed": true,
+        "checked": 129,
+        "failures": []
+      },
+      {
+        "name": "No duplicate destinations",
+        "passed": true,
+        "checked": 129,
+        "failures": []
+      },
+      {
+        "name": "All sources have destinations",
+        "passed": true,
+        "checked": 129,
+        "failures": []
+      },
+      {
+        "name": "No stale imports",
+        "passed": true,
+        "checked": 197,
+        "failures": []
+      },
+      {
+        "name": "All import targets exist",
+        "passed": true,
+        "checked": 197,
+        "failures": []
+      }
+    ]
+  },
+  "idempotency_state": "completed"
+}
