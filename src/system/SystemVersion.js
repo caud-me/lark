@@ -14,7 +14,7 @@ export const SYSTEM_INFO = {
     year: 27,
     milestone: 5,
     phase: 22,
-    hotfix: 1,
+    hotfix: 2,
     channel: "stable",
     build: 1,
     architecture: "Series 5",

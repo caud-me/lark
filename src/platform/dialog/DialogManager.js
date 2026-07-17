@@ -246,6 +246,8 @@ export class DialogManager {
                 font-size: 11px;
                 color: var(--lde-text-secondary, #888888);
                 line-height: 1.4;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .shell-dialog-button-area {
