@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v117';
+const CACHE_NAME = 'v118';
 const ASSETS_TO_CACHE = [
     './index.html',
     './platform.css',

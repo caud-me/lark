@@ -21,7 +21,7 @@ export class BootSplash {
         this.element.style.cssText = `
             position: fixed;
             top: 0; left: 0;
-            width: 100vw; height: 100vh;
+            width: 100dvw; height: 100dvh;
             background-color: #000000;
             color: #ffffff;
             display: flex;

@@ -87,7 +87,7 @@ export class PanicHandler {
         ];
 
         document.body.innerHTML = `
-            <div id="panic-screen" style="background-color: #000; color: #fff; height: 100vh; width: 100vw; font-family: monospace; font-size: 14px; font-weight: bold; position: absolute; top: 0; left: 0; z-index: 999999; overflow-y: auto; overflow-x: hidden; padding: 20px; box-sizing: border-box; line-height: 0.9; white-space: pre-wrap; word-break: break-all;">
+            <div id="panic-screen" style="background-color: #000; color: #fff; height: 100dvh; width: 100dvw; font-family: monospace; font-size: 14px; font-weight: bold; position: absolute; top: 0; left: 0; z-index: 999999; overflow-y: auto; overflow-x: hidden; padding: 20px; box-sizing: border-box; line-height: 0.9; white-space: pre-wrap; word-break: break-all;">
             </div>
         `;
 

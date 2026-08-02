@@ -17,8 +17,8 @@ export class ContextMenuSurface extends ShellComponent {
         this.element.style.position = 'absolute';
         this.element.style.top = '0';
         this.element.style.left = '0';
-        this.element.style.width = '100vw';
-        this.element.style.height = '100vh';
+        this.element.style.width = '100dvw';
+        this.element.style.height = '100dvh';
         this.element.style.pointerEvents = 'none';
         this.element.style.zIndex = '99980';
 

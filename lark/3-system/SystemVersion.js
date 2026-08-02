@@ -14,9 +14,9 @@ export const SYSTEM_INFO = {
     year: 27,
     milestone: 10,
     phase: 17,
-    hotfix: 6,
+    hotfix: 7,
     channel: "stable",
-    build: 100, // this increments every phase, and hotfix. a combined.
+    build: 101, // this increments every phase, and hotfix. a combined.
     architecture: "Series 10",
 
     get version() {

@@ -769,8 +769,8 @@ ul > p, li > p {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100dvw;
+    height: 100dvh;
     /* background: #80808040; */
     /* backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px); */
@@ -792,7 +792,7 @@ ul > p, li > p {
     /* border: 1px solid rgba(255, 255, 255, 0.12); */
     border-radius: 1rem;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-    max-width: 80vw;
+    max-width: 80dvw;
     overflow-x: auto;
 }
 .lde-switcher-item {

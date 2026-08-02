@@ -34,8 +34,8 @@ export class ShutdownScreen {
                 line-height: 1.4;
                 padding: 20px;
                 box-sizing: border-box;
-                width: 100vw;
-                height: 100vh;
+                width: 100dvw;
+                height: 100dvh;
                 overflow-y: auto;
                 overflow-x: hidden;
                 white-space: pre-wrap;

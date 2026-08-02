@@ -741,7 +741,7 @@ Applications contribute system extensions via their manifest:
 - **Series 10 — Bottom-Center Taskbar Sink & Restore Motion Test (27.10.16.2, Build 90)**:
   - **Bottom-Center Taskbar Convergence**: Updated `@keyframes ldeFluidMinimize` and `@keyframes ldeFluidRestore` in `theme.css` to converge to `left: 50%; top: 100%; transform: translate(-50%, -100%) scale(0.3); opacity: 0`, creating a smooth bottom-center taskbar sink animation when minimizing and expanding outward when restoring.
 - **Series 10 — Viewport Relative Motion Engine (27.10.16.3, Build 91)**:
-  - **Viewport Height Scale Engine**: Configured `@keyframes ldeFluidMinimize` and `@keyframes ldeFluidRestore` with `transform: translateY(80vh) scale(0.2)`, allowing keyframe animations to override inline pixel `left`/`top` styles and slide the window 80% down the screen height while scaling down to 20% size and fading.
+  - **Viewport Height Scale Engine**: Configured `@keyframes ldeFluidMinimize` and `@keyframes ldeFluidRestore` with `transform: translateY(80dvh) scale(0.2)`, allowing keyframe animations to override inline pixel `left`/`top` styles and slide the window 80% down the screen height while scaling down to 20% size and fading.
 - **Series 10 — Drag Motion Class Stripping & Animation Cleanup (27.10.16.4, Build 92)**:
   - **Immediate Drag Motion Stripping**: Updated `WindowFrame.js` (`pointerdown` on `titleBar`) and `WindowManager.js` (`moveWindow`) to strip all transient animation/transition classes (`animating-motion`, `minimizing`, `restoring`, `closing`) immediately on drag start and add `.opened`.
   - **Drag Unsnap Bypass**: Dragging a maximized or snapped window to restore it immediately strips animation classes, allowing instantaneous 1-to-1 pointer tracking without lagging or triggering restore keyframe animations during drag gestures.
@@ -757,13 +757,17 @@ Applications contribute system extensions via their manifest:
 - **Series 10 — On-Screen Keyboard Surface Motion Synchronization (27.10.17.3, Build 97)**:
   - **Unified Motion Harmony**: Configured `omni.css` (`.lde-osk-overlay`) with `transition: transform 0.24s cubic-bezier(0.7, 0, 0.84, 0)` for dismiss/exit and `transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1)` for entrance/showing (`.lde-osk-overlay.showing`), creating perfect motion synchronization across OSK floating surfaces and window restore/minimize animations.
 - **Series 10 — Strict Viewport Boundary Lock & Overscroll Protection (27.10.17.4, Build 98)**:
-  - **Viewport Boundaries Lock**: Configured `html`, `body`, `#desktop-root`, and `#window-host` in `theme.css` and `platform.css` with `width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh; position: fixed; overflow: hidden !important; overscroll-behavior: none !important; touch-action: none;`.
+  - **Viewport Boundaries Lock**: Configured `html`, `body`, `#desktop-root`, and `#window-host` in `theme.css` and `platform.css` with `width: 100dvw; height: 100dvh; max-width: 100dvw; max-height: 100dvh; position: fixed; overflow: hidden !important; overscroll-behavior: none !important; touch-action: none;`.
   - **Touch & Gesture Containment**: Eliminates infinite panning/scrolling beyond desktop bounds on touch displays and mobile browsers when dragging windows or floating surfaces.
 - **Series 10 — WindowService resizeWindow Public API Signature Alignment (27.10.17.5, Build 99)**:
   - **Public API Contract**: Added `WindowService.resizeWindow(id, width, height)` public alias for `setWindowSize()` in `WindowService.js` and updated `InputPolicy.js` shortcut handlers, resolving `TypeError` during keyboard window resizing shortcuts (`Alt + Ctrl + Arrow`).
 - **Series 10 — 100% Asset Cache Completeness & GitHub Pages Subpath Audit (27.10.17.6, Build 100)**:
   - **100% Asset Cache Integrity**: Updated `sw.js` `ASSETS_TO_CACHE` manifest and incremented cache version to `v117` to include all 299 platform JavaScript, CSS, JSON, icon, and document assets on disk.
   - **GitHub Pages Subpath Compatibility**: Verified all relative pathing (`./sw.js`, `lark/`, relative imports, and `window.LDE_BASE_URL` in `index.html`) guaranteeing flawless offline and online operation under subpath domains (e.g. `caud-me.github.io/lark/`).
+- **Series 10 — Dynamic Viewport (dvh/dvw) Unit Migration (27.10.17.7, Build 101)**:
+  - **Mobile Viewport Support**: Standardized all `vh` and `vw` CSS units across `platform.css`, `theme.css`, `omni.css`, `PanicHandler.js`, `BootSplash.js`, `ContextMenuSurface.js`, `DialogSurface.js`, and `ShutdownScreen.js` to dynamic viewport units (`dvh` and `dvw`).
+  - **Dynamic Mobile UI Stability**: Ensures screen overlays, desktop boundaries, command palette, context menus, dialog surfaces, and fluid keyframe animations respond dynamically to mobile browser URL bar collapsing/expansion and virtual keyboards without UI clipping or unexpected scrollbars.
+  - **Cache & System Version Bump**: Updated `SYSTEM_INFO` in `SystemVersion.js` to `27.10.17.7` (Build `101`) and incremented `sw.js` cache to `v118`.
 
 
 
