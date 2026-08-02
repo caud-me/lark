@@ -1,0 +1,27 @@
+{
+  "manifest": {
+    "id": "dev.clipboardinspector",
+    "title": "Clipboard Inspector",
+    "description": "Platform Diagnostics: Audits session-scoped clipboard state.",
+    "minimumOsVersion": "1.0.0",
+    "sdkVersion": "1.0.0",
+    "capabilities": {},
+    "runtime": {
+      "loader": "lrfs",
+      "entryPoint": "index.js",
+      "singleton": true,
+      "category": "Developer Tools",
+      "startup": {
+        "intent": false
+      }
+    },
+    "install": {
+      "version": "1.0.0",
+      "author": "LDE Architecture Team",
+      "enabled": true
+    }
+  },
+  "files": {
+    "index.js": "\nconst omni_card = (omni_components) => `\n    <div class=\"comp-card\">\n        ${omni_components}\n    </div>\n`;\nconst omni_button = (id, icon, label, variant = '', extraClass = '', disabled = false) => {\n    const variantClass = variant ? `comp-btn-${variant}` : '';\n    const disabledAttr = disabled ? 'disabled' : '';\n    return `\n        <button id=\"${id}\" class=\"comp-btn ${variantClass} ${extraClass}\" ${disabledAttr}>\n            ${icon ? `<i>${icon}</i>` : ''}${label}\n        </button>\n    `;\n};\nconst omni_listItem = (text_primary, text_secondary, text_tertiary, omni_components) => `\n    <div class=\"layout-v flex-1 flex-gap-2\">\n        <p>${text_primary}</p>\n        ${text_secondary ? `<small>${text_secondary}</small>` : ''}\n        ${text_tertiary ? `<small class=\"er\">${text_tertiary}</small>` : ''}\n        ${omni_components ? `${omni_components}` : ''}\n    </div>\n`;\nconst omni_preferenceItem = (text_primary, text_secondary, text_tertiary, actions) => `\n    <div class=\"layout-h flex-align-center flex-gap-16\">\n        <div class=\"layout-v flex-1 flex-gap-2\">\n            <p>${text_primary}</p>\n            ${text_secondary ? `<small>${text_secondary}</small>` : ''}\n            ${text_tertiary ? `<small class=\"er\">${text_tertiary}</small>` : ''}\n        </div>\n        <div>\n            ${actions || ''}\n        </div>\n    </div>\n`;\nconst omni_group = (label, omni_components, id = '', extraClass = '') => {\n    const labelHtml = label ? `<small>${label}</small>` : '';\n    const idAttr = id ? `id=\"${id}\"` : '';\n    return `\n        ${labelHtml}\n        <div ${idAttr} class=\"comp-group ${extraClass}\">\n            ${omni_components}\n        </div>\n    `;\n};\n\nexport default {\n    async run(registry) {\n        const procRecord = registry.getProcessRecord();\n        const winService = registry.get('WindowService');\n        const sessionService = registry.get('SessionService');\n        const clipboardService = registry.get('ClipboardService');\n\n        if (!winService || !sessionService || !clipboardService) return;\n\n        const win = winService.createWindow({\n            pid: procRecord.pid,\n            title: 'Clipboard Inspector',\n            width: 450,\n            height: 550\n        });\n\n        const container = document.createElement('div');\n        container.style.padding = '16px';\n        container.style.overflowY = 'auto';\n        \n        const renderUI = () => {\n            const session = sessionService.getCurrentSession();\n            const text = clipboardService.readText();\n            const isEmpty = !text;\n\n            const statusHtml = \n                omni_preferenceItem('Session ID', session ? session.id : 'None', '', '') +\n                omni_preferenceItem('Current User', session ? session.user.username : 'Unknown', '', '') +\n                omni_preferenceItem('Clipboard Empty?', isEmpty ? 'Yes' : 'No', '', '') +\n                omni_preferenceItem('Character Count', isEmpty ? '0' : String(text.length), '', '');\n\n            let contentHtml = '';\n            if (isEmpty) {\n                contentHtml = omni_listItem('Clipboard Empty', '', '', '');\n            } else {\n                contentHtml = omni_listItem('Current Clipboard', `\"${text}\"`, '', '');\n            }\n\n            const btnHtml = \n                omni_button(`btn-copy-${win.id}`, '', 'Copy Test Text') +\n                omni_button(`btn-clear-${win.id}`, '', 'Clear Clipboard') +\n                omni_button(`btn-refresh-${win.id}`, '', 'Refresh');\n\n            container.innerHTML = \n                omni_group('Status', omni_card(statusHtml)) +\n                omni_group('Clipboard Contents', omni_card(contentHtml)) +\n                omni_group('Actions', omni_card(btnHtml));\n\n            container.querySelector(`#btn-copy-${win.id}`).onclick = () => {\n                clipboardService.copyText(`Test Text ${Date.now()}`);\n            };\n            container.querySelector(`#btn-clear-${win.id}`).onclick = () => {\n                clipboardService.clear();\n            };\n            container.querySelector(`#btn-refresh-${win.id}`).onclick = () => renderUI();\n        };\n\n        const unsubscribe = clipboardService.onChange((event) => renderUI());\n        win.onClose = () => unsubscribe();\n\n        win.contentElement.appendChild(container);\n        renderUI();\n    }\n};\n"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "repositoryVersion": 1,
+  "name": "Official LDE Repository",
+  "packages": [
+    {
+      "id": "example.notes",
+      "title": "Notes (Demo)",
+      "version": "1.0.0",
+      "description": "A simple note-taking application showcasing the LDE package ecosystem.",
+      "author": "LDE Community",
+      "download": "lark/5-platform/packages/repositories/packages/example.notes.ldepkg",
+      "screenshots": [],
+      "homepage": "https://lde27.example",
+      "license": "MIT",
+      "tags": ["productivity", "notes", "demo"],
+      "minimumOsVersion": "27.1.0",
+      "size": 2048
+    },
+    {
+      "id": "example.intenttester",
+      "title": "Intent Tester",
+      "version": "1.0.0",
+      "description": "Integration test utility for the Application Intent routing architecture.",
+      "author": "Lark OS Architecture Team",
+      "download": "lark/5-platform/packages/repositories/packages/example.intenttester.ldepkg",
+      "screenshots": [],
+      "homepage": "https://lde27.example",
+      "license": "MIT",
+      "tags": ["developer", "tools", "intents"],
+      "minimumOsVersion": "27.5.21",
+      "size": 4096
+    },
+    {
+      "id": "dev.clipboardinspector",
+      "title": "Clipboard Inspector",
+      "version": "1.0.0",
+      "description": "Platform Diagnostics: Audits session-scoped clipboard state.",
+      "author": "LDE Architecture Team",
+      "download": "lark/5-platform/packages/repositories/packages/dev.clipboardinspector.ldepkg",
+      "screenshots": [],
+      "homepage": "https://lde27.example",
+      "license": "MIT",
+      "tags": ["developer", "tools", "diagnostics", "clipboard"],
+      "minimumOsVersion": "1.0.0",
+      "size": 2048,
+      "hidden": true
+    },
+    {
+      "id": "dev.notificationinspector",
+      "title": "Notification Inspector",
+      "version": "1.0.0",
+      "description": "Platform Diagnostics: Audits session-scoped notification state.",
+      "author": "LDE Architecture Team",
+      "download": "lark/5-platform/packages/repositories/packages/dev.notificationinspector.ldepkg",
+      "screenshots": [],
+      "homepage": "https://lde27.example",
+      "license": "MIT",
+      "tags": ["developer", "tools", "diagnostics", "notifications"],
+      "minimumOsVersion": "1.0.0",
+      "size": 2048,
+      "hidden": true
+    },
+    {
+      "id": "sys.guardian",
+      "title": "Guardian",
+      "version": "1.0.0",
+      "description": "Platform Health, Integrity, and Architecture Verification Dashboard.",
+      "author": "Lark OS Architecture Team",
+      "download": "lark/6-apps/system/Guardian.js",
+      "screenshots": [],
+      "homepage": "https://lde27.example",
+      "license": "MIT",
+      "tags": ["system", "guardian", "health", "integrity", "validation", "harness"],
+      "minimumOsVersion": "27.8.4",
+      "size": 4096
+    }
+  ]
+}

@@ -6,9 +6,10 @@
     <title>Lark OS 27</title>
     <link rel="icon" href="./assets/icons/icon.svg">
     <link rel="manifest" href="./manifest.json">
-    <link rel="stylesheet" href="./src/ui/theme.css">
+    <link rel="stylesheet" href="./lark/9-ui/theme.css">
     <!-- version 2 omni -->
-    <link rel="stylesheet" href="./src/ui/omni.css">
+    <link rel="stylesheet" href="./lark/9-ui/omni.css">
+    <link rel="stylesheet" href="./platform.css">
     <style>
         #desktop-host, #platform-host {
             position: absolute;
@@ -31,9 +32,8 @@
     </div>
     <div id="platform-host"></div>
     <script>
-            // Resolve the base URL dynamically to support subdirectory deployments (e.g., GitHub Pages)
-                    let basePath = window.location.pathname;
-                            if (!basePath.endsWith('/')) {
+        let basePath = window.location.pathname;
+        if (!basePath.endsWith('/')) {
             if (!basePath.split('/').pop().includes('.')) {
                 basePath += '/';
             } else {
@@ -41,11 +41,9 @@
             }
         }
         window.LDE_BASE_URL = window.location.origin + basePath;
+        window.LDE_SOURCE_URL = new URL('lark/', window.LDE_BASE_URL).href;
     </script>
-    <script type="module">
-        import { ServiceWorkerManager } from './src/kernel/ServiceWorkerManager.js';
-        ServiceWorkerManager.init();
-    </script>
-    <script type="module" src="./src/kernel/BootLoader.js"></script>
+    <script type="module" src="./lark/0-firmware/BootLoader.js"></script>
 </body>
 </html>
+

@@ -1,0 +1,1294 @@
+{
+  "DriverManager": {
+    "file": "src/1-kernel/DriverManager.js",
+    "methods": [
+      "constructor(driverRegistry)",
+      "registerDefaultDriverClasses()",
+      "initializeDrivers()",
+      "getRegistry()",
+      "getDriver(key)",
+      "getDriverStatusList()"
+    ]
+  },
+  "KernelResourceManager": {
+    "file": "src/1-kernel/KernelResourceManager.js",
+    "methods": [
+      "constructor(kernelRef = null)",
+      "recordBootStage(stageId, stageName, durationMs)",
+      "getBootTimeline()",
+      "getFirmwareInfo()",
+      "getUptime()",
+      "getKernelState()",
+      "getDriverStatusTable()",
+      "getProcessOverview()",
+      "getStorageOverview()"
+    ]
+  },
+  "ServiceWorkerManager": {
+    "file": "src/1-kernel/ServiceWorkerManager.js",
+    "methods": []
+  },
+  "KernelAudioAPI": {
+    "file": "src/1-kernel/api/KernelAudioAPI.js",
+    "methods": [
+      "constructor(driverManager)",
+      "_getHandle()",
+      "playSound(soundId)",
+      "stopSound()"
+    ]
+  },
+  "KernelDisplayAPI": {
+    "file": "src/1-kernel/api/KernelDisplayAPI.js",
+    "methods": [
+      "constructor(driverManager)",
+      "_getHandle()",
+      "getDisplayInformation()",
+      "supportsTransparency()",
+      "supportsAnimations()",
+      "createSurface(id, width, height)"
+    ]
+  },
+  "KernelInputAPI": {
+    "file": "src/1-kernel/api/KernelInputAPI.js",
+    "methods": [
+      "constructor(driverManager)",
+      "_getHandle()",
+      "isKeyboardAvailable()",
+      "isPointerAvailable()",
+      "supportsShortcutKeys()",
+      "supportsDragAndDrop()"
+    ]
+  },
+  "KernelNetworkAPI": {
+    "file": "src/1-kernel/api/KernelNetworkAPI.js",
+    "methods": [
+      "constructor(driverManager)",
+      "_getHandle()",
+      "isOnline()",
+      "download(url, options = {})"
+    ]
+  },
+  "KernelStorageAPI": {
+    "file": "src/1-kernel/api/KernelStorageAPI.js",
+    "methods": [
+      "constructor(driverManager)",
+      "_getHandle()",
+      "getCapacity()",
+      "getUsage()",
+      "mountVolume()",
+      "unmountVolume()"
+    ]
+  },
+  "AudioDriver": {
+    "file": "src/1-kernel/drivers/AudioDriver.js",
+    "methods": [
+      "constructor()",
+      "initialize(deviceMetadata)",
+      "play(soundId)",
+      "stop()"
+    ]
+  },
+  "BaseDriver": {
+    "file": "src/1-kernel/drivers/BaseDriver.js",
+    "methods": [
+      "constructor(name, type, targetDeviceId, required = false)",
+      "initialize(deviceMetadata)",
+      "getStatus()",
+      "isLoaded()",
+      "isRequired()"
+    ]
+  },
+  "DisplayDriver": {
+    "file": "src/1-kernel/drivers/DisplayDriver.js",
+    "methods": [
+      "constructor()",
+      "initialize(deviceMetadata)",
+      "getDisplayInformation()",
+      "createSurface(surfaceId, width, height)",
+      "supportsTransparency()",
+      "supportsAnimations()"
+    ]
+  },
+  "KeyboardDriver": {
+    "file": "src/1-kernel/drivers/KeyboardDriver.js",
+    "methods": [
+      "constructor()",
+      "initialize(deviceMetadata)",
+      "dispatchKeyEvent(event)",
+      "supportsShortcutKeys()"
+    ]
+  },
+  "NetworkDriver": {
+    "file": "src/1-kernel/drivers/NetworkDriver.js",
+    "methods": [
+      "constructor()",
+      "initialize(deviceMetadata)",
+      "isOnline()",
+      "download(url)"
+    ]
+  },
+  "PointerDriver": {
+    "file": "src/1-kernel/drivers/PointerDriver.js",
+    "methods": [
+      "constructor()",
+      "initialize(deviceMetadata)",
+      "dispatchPointerEvent(event)",
+      "supportsDragAndDrop()"
+    ]
+  },
+  "StorageDriver": {
+    "file": "src/1-kernel/drivers/StorageDriver.js",
+    "methods": [
+      "constructor()",
+      "initialize(deviceMetadata)",
+      "mount()",
+      "unmount()",
+      "getCapacity()",
+      "getUsage()"
+    ]
+  },
+  "IndexedDBStorageDriver": {
+    "file": "src/2-storage/IndexedDBStorageDriver.js",
+    "methods": [
+      "constructor(dbName = 'lde27_indexeddb_disk', storeName = 'disk_store')",
+      "init()",
+      "_loadDisk()",
+      "_createEmptyDisk()",
+      "_saveDisk()",
+      "getMetadata()",
+      "setMetadata(metadata)",
+      "getName()",
+      "getCapabilities()",
+      "getCapacity()",
+      "getLabel()",
+      "getVersion()",
+      "read(key)",
+      "write(key, value)",
+      "remove(key)",
+      "keys()",
+      "hasExistingData()",
+      "close()"
+    ]
+  },
+  "LocalStorageDriver": {
+    "file": "src/2-storage/LocalStorageDriver.js",
+    "methods": [
+      "constructor(diskName = 'lde27_lark_disk', legacyPrefix = 'lde27_lrfs_')",
+      "_loadDisk()",
+      "_createEmptyDisk()",
+      "_migrateLegacyDisk()",
+      "_saveDisk()",
+      "getMetadata()",
+      "setMetadata(metadata)",
+      "getName()",
+      "getCapabilities()",
+      "getCapacity()",
+      "getLabel()",
+      "getVersion()",
+      "read(key)",
+      "write(key, value)",
+      "remove(key)",
+      "keys()",
+      "close()"
+    ]
+  },
+  "BrowserStorageService": {
+    "file": "src/5-platform/browser/BrowserStorageService.js",
+    "methods": []
+  },
+  "CapabilityService": {
+    "file": "src/5-platform/capabilities/CapabilityService.js",
+    "methods": [
+      "constructor(registry)",
+      "get(capabilityId, pid = null)",
+      "has(capabilityId)"
+    ]
+  },
+  "ClipboardManager": {
+    "file": "src/5-platform/clipboard/ClipboardManager.js",
+    "methods": [
+      "constructor()",
+      "setText(sessionId, text)",
+      "getText(sessionId)",
+      "clear(sessionId)"
+    ]
+  },
+  "ClipboardService": {
+    "file": "src/5-platform/clipboard/ClipboardService.js",
+    "methods": [
+      "constructor(clipboardManager, registry)",
+      "_getCurrentSessionId()",
+      "copyText(text)",
+      "readText()",
+      "clear()",
+      "onChange(callback)"
+    ]
+  },
+  "ContextMenuManager": {
+    "file": "src/5-platform/contextmenu/ContextMenuManager.js",
+    "methods": [
+      "constructor()",
+      "showMenu(menuState)",
+      "dismissMenu()",
+      "getActiveMenu()"
+    ]
+  },
+  "ContextMenuService": {
+    "file": "src/5-platform/contextmenu/ContextMenuService.js",
+    "methods": [
+      "constructor(contextMenuManager, registry = null)",
+      "_getInputAPI()",
+      "showMenu(x, y, items)",
+      "dismissMenu(resultId = null)",
+      "getActiveMenu()",
+      "onMenuChanged(callback)"
+    ]
+  },
+  "DesktopEnvironmentService": {
+    "file": "src/5-platform/desktop/DesktopEnvironmentService.js",
+    "methods": [
+      "constructor(serviceRegistry)",
+      "create(envId, sessionId)",
+      "destroy(sessionId)",
+      "resume(sessionId)",
+      "suspend(sessionId)",
+      "getCurrent(sessionId)"
+    ]
+  },
+  "WallpaperService": {
+    "file": "src/5-platform/desktop/WallpaperService.js",
+    "methods": [
+      "constructor(registry)",
+      "_cleanupActiveUrl()",
+      "getWallpaperUrl()",
+      "setWallpaper(fileBlob)",
+      "onChange(callback)"
+    ]
+  },
+  "DialogManager": {
+    "file": "src/5-platform/dialog/DialogManager.js",
+    "methods": [
+      "constructor()",
+      "showDialog(dialogConfig, resolve)",
+      "dismissDialog()",
+      "getActiveDialog()"
+    ]
+  },
+  "DialogService": {
+    "file": "src/5-platform/dialog/DialogService.js",
+    "methods": [
+      "constructor(dialogManager)",
+      "alert(message, title = 'Alert')",
+      "confirm(message, title = 'Confirm')",
+      "prompt(message, defaultValue = '', title = 'Input Required', inputType = 'text')",
+      "show(dialogConfig)",
+      "dismissDialog(result = null)",
+      "getActiveDialog()",
+      "onDialogChanged(callback)",
+      "openFile(options = {})",
+      "saveFile(options = {})",
+      "openDirectory(options = {})"
+    ]
+  },
+  "EnvironmentManager": {
+    "file": "src/5-platform/environments/EnvironmentManager.js",
+    "methods": [
+      "constructor()",
+      "setActiveEnvironment(env)",
+      "getActiveEnvironment()",
+      "clear()"
+    ]
+  },
+  "ExtensionRepositoryManager": {
+    "file": "src/5-platform/extensions/ExtensionRepositoryManager.js",
+    "methods": [
+      "constructor(applicationDatabaseManager)",
+      "refresh()",
+      "getAllExtensions()",
+      "getExtensionsByType(type)",
+      "getExtensionsForApp(appId)"
+    ]
+  },
+  "ExtensionService": {
+    "file": "src/5-platform/extensions/ExtensionService.js",
+    "methods": [
+      "constructor(extensionRepositoryManager)",
+      "getAllExtensions()",
+      "getExtensions(type)",
+      "getExtensionsForApplication(appId)"
+    ]
+  },
+  "DiskManager": {
+    "file": "src/5-platform/filesystem/DiskManager.js",
+    "methods": [
+      "constructor()",
+      "setInfo(info)",
+      "getInfo()",
+      "setSnapshots(snapshots)",
+      "getSnapshots()",
+      "addSnapshot(snapshot)"
+    ]
+  },
+  "DiskService": {
+    "file": "src/5-platform/filesystem/DiskService.js",
+    "methods": [
+      "constructor(diskManager, lrfs)",
+      "initialize()",
+      "_syncState()",
+      "getDiskInfo()",
+      "getVersion()",
+      "getSnapshots()",
+      "createSnapshot(label)"
+    ]
+  },
+  "FileService": {
+    "file": "src/5-platform/filesystem/FileService.js",
+    "methods": [
+      "constructor(lrfs, registry)",
+      "_resolveContext(options = {})",
+      "_getSessionUsername(options = {})",
+      "_getMetadata(ownerOverride = null, options = {})",
+      "_getParentPath(path)",
+      "_checkAccess(path, operation, options = {})",
+      "canAccess(path, operation, options = {})",
+      "readFile(path, options = {})",
+      "open(path, options = {})",
+      "getUsage()",
+      "getCapacity()",
+      "getDriverType()",
+      "getStorageInfo()",
+      "writeFile(path, content, options = {})",
+      "exists(path)",
+      "isFile(path)",
+      "isDirectory(path)",
+      "getType(path)",
+      "createDirectory(path, options = {})",
+      "createFile(path, content = '', options = {})",
+      "listDirectory(path, options = {})",
+      "delete(path, options = {})",
+      "deleteFile(path, options = {})",
+      "rename(path, newName, options = {})",
+      "copy(sourcePath, destPath, options = {})"
+    ]
+  },
+  "GuardianHistoryManager": {
+    "file": "src/5-platform/guardian/GuardianHistoryManager.js",
+    "methods": [
+      "constructor()",
+      "setHistory(historyArray)",
+      "addScanRecord(scanRecord)",
+      "getHistory()",
+      "getLatestScan()",
+      "_sortAndTrim()"
+    ]
+  },
+  "GuardianService": {
+    "file": "src/5-platform/guardian/GuardianService.js",
+    "methods": [
+      "constructor(guardianHistoryManager, serviceRegistry)",
+      "initialize()",
+      "runStartupValidation()",
+      "runQuickScan()",
+      "runFullRegression()",
+      "getLatestScan()",
+      "getHistory()",
+      "_onDesktopReady()",
+      "_persistHistory()"
+    ]
+  },
+  "SystemInformationService": {
+    "file": "src/5-platform/info/SystemInformationService.js",
+    "methods": [
+      "constructor(serviceRegistry)",
+      "_getResourceManager()",
+      "getSystemInfo()",
+      "getFirmwareInfo()",
+      "getBootState()",
+      "getCurrentEnvironment()",
+      "getStorageOverview()",
+      "getDriverInfo()",
+      "getBootTimeline()"
+    ]
+  },
+  "CommandService": {
+    "file": "src/5-platform/ipc/CommandService.js",
+    "methods": [
+      "constructor(registry)",
+      "_registerCommands()",
+      "registerCommand(cmdDef)",
+      "resolvePath(cwd, p)",
+      "executeCommand(commandStr, context)"
+    ]
+  },
+  "IPCManager": {
+    "file": "src/5-platform/ipc/IPCManager.js",
+    "methods": [
+      "constructor()",
+      "subscribe(pid, channel, callback)",
+      "unsubscribe(pid, channel, callback)",
+      "unsubscribeAllForPid(pid)",
+      "send(sourcePid, targetPid, message)",
+      "broadcast(sourcePid, channel, message)"
+    ]
+  },
+  "IPCService": {
+    "file": "src/5-platform/ipc/IPCService.js",
+    "methods": [
+      "constructor(ipcManager, serviceRegistry)",
+      "subscribe(pid, channel, callback)",
+      "unsubscribe(pid, channel, callback)",
+      "send(sourcePid, target, message)",
+      "broadcast(sourcePid, channel, message)"
+    ]
+  },
+  "ErrorService": {
+    "file": "src/5-platform/logging/ErrorService.js",
+    "methods": [
+      "constructor(serviceRegistry)",
+      "reportError(error, source = 'System', pid = null)"
+    ]
+  },
+  "LogManager": {
+    "file": "src/5-platform/logging/LogManager.js",
+    "methods": [
+      "constructor()",
+      "addLog(entry)",
+      "getLogs()",
+      "clearLogs()"
+    ]
+  },
+  "LogService": {
+    "file": "src/5-platform/logging/LogService.js",
+    "methods": [
+      "constructor(logManager)",
+      "addEntry(entry)",
+      "getLogs()",
+      "subscribe(callback)",
+      "unsubscribe(callback)",
+      "clearLogs()"
+    ]
+  },
+  "DownloadService": {
+    "file": "src/5-platform/network/DownloadService.js",
+    "methods": [
+      "constructor(networkService)",
+      "download(url, destination)",
+      "downloadJson(url)",
+      "downloadText(url)",
+      "downloadBlob(url)"
+    ]
+  },
+  "NetworkManager": {
+    "file": "src/5-platform/network/NetworkManager.js",
+    "methods": [
+      "constructor()",
+      "setOnlineStatus(isOnline)",
+      "isOnline()",
+      "incrementActiveRequests()",
+      "decrementActiveRequests()",
+      "getActiveRequestCount()",
+      "getLastConnectivityChange()"
+    ]
+  },
+  "NetworkService": {
+    "file": "src/5-platform/network/NetworkService.js",
+    "methods": [
+      "constructor(networkManager, serviceRegistry = null)",
+      "_getNetworkAPI()",
+      "isOnline()",
+      "fetch(url, options = {})",
+      "fetchJson(url, options = {})",
+      "fetchText(url, options = {})",
+      "fetchBlob(url, options = {})"
+    ]
+  },
+  "NotificationManager": {
+    "file": "src/5-platform/notifications/NotificationManager.js",
+    "methods": [
+      "constructor()",
+      "_getSessionNotifications(sessionId)",
+      "notify(sessionId, options)",
+      "dismiss(sessionId, id)",
+      "clearAll(sessionId)",
+      "getNotifications(sessionId)"
+    ]
+  },
+  "NotificationService": {
+    "file": "src/5-platform/notifications/NotificationService.js",
+    "methods": [
+      "constructor(notificationManager, registry)",
+      "_getCurrentSessionId()",
+      "notify(options)",
+      "dismiss(id)",
+      "clearAll()",
+      "getNotifications()",
+      "onChange(callback)"
+    ]
+  },
+  "ApplicationDatabaseManager": {
+    "file": "src/5-platform/packages/ApplicationDatabaseManager.js",
+    "methods": [
+      "constructor()",
+      "setDatabase(json)",
+      "getDatabaseState()",
+      "setInitialized(state)",
+      "isInitialized()",
+      "getAllApps()",
+      "getAppById(id)",
+      "registerApp(manifest)",
+      "unregisterApp(appId)",
+      "_normalizeManifest(app)"
+    ]
+  },
+  "ApplicationDatabaseService": {
+    "file": "src/5-platform/packages/ApplicationDatabaseService.js",
+    "methods": [
+      "constructor(applicationDatabaseManager, serviceRegistry)",
+      "initialize()",
+      "syncBuiltins(defaultApps)",
+      "save()",
+      "registerApp(manifest)",
+      "unregisterApp(appId)",
+      "getAllApps()",
+      "getAppById(id)",
+      "_normalizeManifest(app)",
+      "onChange(callback)"
+    ]
+  },
+  "ApplicationIntentService": {
+    "file": "src/5-platform/packages/ApplicationIntentService.js",
+    "methods": [
+      "constructor(registry)",
+      "sendIntent(pid, intent)",
+      "launchWithIntent(appId, intent, options = {})"
+    ]
+  },
+  "ApplicationService": {
+    "file": "src/5-platform/packages/ApplicationService.js",
+    "methods": [
+      "constructor(applicationDatabaseService, registry = null)",
+      "launch(appId, launchContext = {})",
+      "getInstalledApplications()",
+      "getApplication(id)",
+      "getStartupApplications()",
+      "searchApplications(query)",
+      "getApplicationsByCategory(category)",
+      "_mapToPublicApi(app)"
+    ]
+  },
+  "AssociationService": {
+    "file": "src/5-platform/packages/AssociationService.js",
+    "methods": [
+      "constructor(applicationService)",
+      "resolveApplication(path)",
+      "getCompatibleApplications(path)"
+    ]
+  },
+  "PackageService": {
+    "file": "src/5-platform/packages/PackageService.js",
+    "methods": [
+      "constructor(packageInstallOrchestrator)",
+      "installPackage(packagePath, pid = null)",
+      "uninstallPackage(appId, pid = null)"
+    ]
+  },
+  "PermissionManager": {
+    "file": "src/5-platform/packages/PermissionManager.js",
+    "methods": [
+      "constructor()",
+      "setState(state)",
+      "getState()",
+      "getPermissionState(appId, permission)",
+      "setPermissionState(appId, permission, status)"
+    ]
+  },
+  "PermissionService": {
+    "file": "src/5-platform/packages/PermissionService.js",
+    "methods": [
+      "constructor(permissionManager, appService, serviceRegistry)",
+      "initialize()",
+      "save()",
+      "hasPermission(appId, permission)",
+      "requestPermission(appId, permission)",
+      "revokePermission(appId, permission)",
+      "getPermissions(appId)"
+    ]
+  },
+  "RepositoryManager": {
+    "file": "src/5-platform/packages/RepositoryManager.js",
+    "methods": [
+      "constructor()",
+      "registerSource(sourceId, sourceInstance)",
+      "setPackages(packages)",
+      "getSources()",
+      "getAllPackages()",
+      "getPackageById(packageId)",
+      "searchPackages(query)"
+    ]
+  },
+  "RepositoryService": {
+    "file": "src/5-platform/packages/RepositoryService.js",
+    "methods": [
+      "constructor(repositoryManager, networkService)",
+      "refresh()",
+      "getPackages()",
+      "searchPackages(query)"
+    ]
+  },
+  "RuntimeLoaderManager": {
+    "file": "src/5-platform/packages/RuntimeLoaderManager.js",
+    "methods": [
+      "constructor()",
+      "registerLoader(strategyName, loaderInstance)",
+      "load(appInfo)"
+    ]
+  },
+  "RuntimeLoaderService": {
+    "file": "src/5-platform/packages/RuntimeLoaderService.js",
+    "methods": [
+      "constructor(runtimeLoaderManager)",
+      "loadApplication(appInfo)"
+    ]
+  },
+  "TrustManager": {
+    "file": "src/5-platform/packages/TrustManager.js",
+    "methods": [
+      "constructor()",
+      "computeTrustMetadata(manifest)"
+    ]
+  },
+  "TrustService": {
+    "file": "src/5-platform/packages/TrustService.js",
+    "methods": [
+      "constructor(trustManager, appService)",
+      "evaluateManifest(manifest)",
+      "getTrustMetadata(appId)"
+    ]
+  },
+  "ProcessManager": {
+    "file": "src/5-platform/process/ProcessManager.js",
+    "methods": [
+      "constructor()",
+      "startProcess(appId, name, ownerUsername, options = {})",
+      "setWindowCount(pid, count)",
+      "terminateProcess(pid, force = false)",
+      "getProcess(pid)",
+      "list()"
+    ]
+  },
+  "ProcessService": {
+    "file": "src/5-platform/process/ProcessService.js",
+    "methods": [
+      "constructor(processManager, applicationService, serviceRegistry, runtimeLoaderService)",
+      "launch(appId, options = {})",
+      "startProcess(appId, options = {})",
+      "startDesktopEnvironment(desktopEnv, options = {})",
+      "terminateProcess(pid, force = false)",
+      "shutdownAll()",
+      "getProcesses()",
+      "getProcess(pid)",
+      "_bindEvent(eventName, callback)",
+      "onStarted(callback)",
+      "onTerminated(callback)"
+    ]
+  },
+  "RecoveryManager": {
+    "file": "src/5-platform/recovery/RecoveryManager.js",
+    "methods": [
+      "constructor()",
+      "getBootMode()",
+      "setRecoveryReason(reason)",
+      "getRecoveryReason()",
+      "setLastBootStatus(status)",
+      "getLastBootStatus()",
+      "addRepairRecord(record)",
+      "getRepairHistory()"
+    ]
+  },
+  "RecoveryService": {
+    "file": "src/5-platform/recovery/RecoveryService.js",
+    "methods": [
+      "constructor(recoveryManager, serviceRegistry)",
+      "isRecoveryMode()",
+      "isSafeMode()",
+      "listRecoveryTools()"
+    ]
+  },
+  "RestoreManager": {
+    "file": "src/5-platform/recovery/RestoreManager.js",
+    "methods": [
+      "constructor()",
+      "getActiveRestoreOperation()",
+      "setActiveRestoreOperation(operation)",
+      "getSelectedSnapshotId()",
+      "setSelectedSnapshotId(id)",
+      "getProgress()",
+      "setProgress(progress)",
+      "addRestoreHistoryEntry(entry)",
+      "getRestoreHistory()"
+    ]
+  },
+  "RestoreService": {
+    "file": "src/5-platform/recovery/RestoreService.js",
+    "methods": [
+      "constructor(restoreManager, restorePolicy, serviceRegistry)",
+      "listRestorePoints()",
+      "createRestorePoint(name, context)",
+      "restoreSnapshot(id, context)",
+      "cancelRestore()"
+    ]
+  },
+  "BoundFileService": {
+    "file": "src/5-platform/registry/ScopedServiceRegistry.js",
+    "methods": [
+      "constructor(globalFileService, pid)",
+      "_cleanOptions(options)",
+      "readFile(path, options = {})",
+      "writeFile(path, content, options = {})",
+      "exists(path)",
+      "isFile(path)",
+      "isDirectory(path)",
+      "getType(path)",
+      "createDirectory(path, options = {})",
+      "createFile(path, content = '', options = {})",
+      "listDirectory(path, options = {})",
+      "delete(path, options = {})",
+      "rename(path, newName, options = {})",
+      "copy(sourcePath, destPath, options = {})",
+      "move(sourcePath, destPath, options = {})",
+      "duplicate(path, options = {})",
+      "getUsage()",
+      "getCapacity()",
+      "getStorageInfo()",
+      "canAccess(path, operation, options = {})",
+      "open(path, options = {})",
+      "repairMetadata(path, options = {})",
+      "constructor(globalCapabilityService, pid)",
+      "get(capabilityId)",
+      "has(capabilityId)"
+    ]
+  },
+  "BoundCapabilityService": {
+    "file": "src/5-platform/registry/ScopedServiceRegistry.js",
+    "methods": [
+      "constructor(globalFileService, pid)",
+      "_cleanOptions(options)",
+      "readFile(path, options = {})",
+      "writeFile(path, content, options = {})",
+      "exists(path)",
+      "isFile(path)",
+      "isDirectory(path)",
+      "getType(path)",
+      "createDirectory(path, options = {})",
+      "createFile(path, content = '', options = {})",
+      "listDirectory(path, options = {})",
+      "delete(path, options = {})",
+      "rename(path, newName, options = {})",
+      "copy(sourcePath, destPath, options = {})",
+      "move(sourcePath, destPath, options = {})",
+      "duplicate(path, options = {})",
+      "getUsage()",
+      "getCapacity()",
+      "getStorageInfo()",
+      "canAccess(path, operation, options = {})",
+      "open(path, options = {})",
+      "repairMetadata(path, options = {})",
+      "constructor(globalCapabilityService, pid)",
+      "get(capabilityId)",
+      "has(capabilityId)"
+    ]
+  },
+  "BoundWindowService": {
+    "file": "src/5-platform/registry/ScopedServiceRegistry.js",
+    "methods": [
+      "constructor(globalFileService, pid)",
+      "_cleanOptions(options)",
+      "readFile(path, options = {})",
+      "writeFile(path, content, options = {})",
+      "exists(path)",
+      "isFile(path)",
+      "isDirectory(path)",
+      "getType(path)",
+      "createDirectory(path, options = {})",
+      "createFile(path, content = '', options = {})",
+      "listDirectory(path, options = {})",
+      "delete(path, options = {})",
+      "rename(path, newName, options = {})",
+      "copy(sourcePath, destPath, options = {})",
+      "move(sourcePath, destPath, options = {})",
+      "duplicate(path, options = {})",
+      "getUsage()",
+      "getCapacity()",
+      "getStorageInfo()",
+      "canAccess(path, operation, options = {})",
+      "open(path, options = {})",
+      "repairMetadata(path, options = {})",
+      "constructor(globalCapabilityService, pid)",
+      "get(capabilityId)",
+      "has(capabilityId)"
+    ]
+  },
+  "BoundProcessService": {
+    "file": "src/5-platform/registry/ScopedServiceRegistry.js",
+    "methods": [
+      "constructor(globalFileService, pid)",
+      "_cleanOptions(options)",
+      "readFile(path, options = {})",
+      "writeFile(path, content, options = {})",
+      "exists(path)",
+      "isFile(path)",
+      "isDirectory(path)",
+      "getType(path)",
+      "createDirectory(path, options = {})",
+      "createFile(path, content = '', options = {})",
+      "listDirectory(path, options = {})",
+      "delete(path, options = {})",
+      "rename(path, newName, options = {})",
+      "copy(sourcePath, destPath, options = {})",
+      "move(sourcePath, destPath, options = {})",
+      "duplicate(path, options = {})",
+      "getUsage()",
+      "getCapacity()",
+      "getStorageInfo()",
+      "canAccess(path, operation, options = {})",
+      "open(path, options = {})",
+      "repairMetadata(path, options = {})",
+      "constructor(globalCapabilityService, pid)",
+      "get(capabilityId)",
+      "has(capabilityId)"
+    ]
+  },
+  "BoundDialogService": {
+    "file": "src/5-platform/registry/ScopedServiceRegistry.js",
+    "methods": [
+      "constructor(globalFileService, pid)",
+      "_cleanOptions(options)",
+      "readFile(path, options = {})",
+      "writeFile(path, content, options = {})",
+      "exists(path)",
+      "isFile(path)",
+      "isDirectory(path)",
+      "getType(path)",
+      "createDirectory(path, options = {})",
+      "createFile(path, content = '', options = {})",
+      "listDirectory(path, options = {})",
+      "delete(path, options = {})",
+      "rename(path, newName, options = {})",
+      "copy(sourcePath, destPath, options = {})",
+      "move(sourcePath, destPath, options = {})",
+      "duplicate(path, options = {})",
+      "getUsage()",
+      "getCapacity()",
+      "getStorageInfo()",
+      "canAccess(path, operation, options = {})",
+      "open(path, options = {})",
+      "repairMetadata(path, options = {})",
+      "constructor(globalCapabilityService, pid)",
+      "get(capabilityId)",
+      "has(capabilityId)"
+    ]
+  },
+  "SearchService": {
+    "file": "src/5-platform/search/SearchService.js",
+    "methods": [
+      "constructor(extensionService, serviceRegistry)",
+      "loadProviders()",
+      "registerProvider(provider)",
+      "activate(result)"
+    ]
+  },
+  "SecurityManager": {
+    "file": "src/5-platform/security/SecurityManager.js",
+    "methods": [
+      "constructor()",
+      "addElevation(pid)",
+      "removeElevation(pid)",
+      "isElevated(pid)",
+      "compareRoles(role1, role2)"
+    ]
+  },
+  "SecurityService": {
+    "file": "src/5-platform/security/SecurityService.js",
+    "methods": [
+      "constructor(securityManager, processManager, sessionManager)",
+      "getContext(pid)",
+      "getSessionContext()",
+      "getSystemContext()",
+      "isSystem(context)",
+      "isKernel(context)",
+      "isAdministrator(context)",
+      "canElevate(context)",
+      "elevate(pid)",
+      "dropPrivileges(pid)"
+    ]
+  },
+  "PowerService": {
+    "file": "src/5-platform/session/PowerService.js",
+    "methods": [
+      "constructor(processManager, sessionManager, registry)",
+      "_invokeLifecycle(methodName)",
+      "_terminateUserProcesses(username)",
+      "lock()",
+      "unlock()",
+      "logout()",
+      "reboot(options = { mode: BootMode.NORMAL })",
+      "shutdown()"
+    ]
+  },
+  "SessionManager": {
+    "file": "src/5-platform/session/SessionManager.js",
+    "methods": [
+      "constructor()",
+      "_bindEvents()",
+      "startSystemSession()",
+      "createSession(user)",
+      "activateSession(sessionId)",
+      "suspendSession(sessionId)",
+      "resumeSession(sessionId)",
+      "lockSession(sessionId = this.activeSessionId)",
+      "unlockSession(sessionId = this.activeSessionId)",
+      "isLocked()",
+      "endSession(sessionId)",
+      "getCurrentSession()",
+      "getSessions()"
+    ]
+  },
+  "SessionService": {
+    "file": "src/5-platform/session/SessionService.js",
+    "methods": [
+      "constructor(sessionManager, userManager, registry)",
+      "getCurrentSession()",
+      "getSessions()",
+      "login(username)",
+      "getLastActiveUser()",
+      "switchSession(sessionId)",
+      "_bindEvent(eventName, callback)",
+      "onStarted(callback)",
+      "onEnded(callback)",
+      "onLocked(callback)",
+      "onUnlocked(callback)",
+      "onSuspended(callback)",
+      "onResumed(callback)",
+      "_getCurrentSessionId()",
+      "suspendActiveSession()",
+      "lock(sessionId = null)",
+      "unlock(sessionId = null)",
+      "isLocked()",
+      "logout(sessionId = null)"
+    ]
+  },
+  "SettingsManager": {
+    "file": "src/5-platform/settings/SettingsManager.js",
+    "methods": [
+      "constructor()",
+      "setSettings(settings)",
+      "getAllSettings()",
+      "get(key)",
+      "getAll()",
+      "set(key, value)",
+      "reset(key)"
+    ]
+  },
+  "SettingsService": {
+    "file": "src/5-platform/settings/SettingsService.js",
+    "methods": [
+      "constructor(settingsManager, serviceRegistry)",
+      "initialize()",
+      "save()",
+      "getSetting(key)",
+      "setSetting(key, value)",
+      "getAllSettings()",
+      "resetSetting(key)",
+      "onChange(callback)"
+    ]
+  },
+  "ShortcutManager": {
+    "file": "src/5-platform/shortcuts/ShortcutManager.js",
+    "methods": [
+      "constructor()",
+      "register(shortcutConfig)",
+      "unregister(shortcutConfig)",
+      "handleKeyDown(e)"
+    ]
+  },
+  "ShortcutService": {
+    "file": "src/5-platform/shortcuts/ShortcutService.js",
+    "methods": [
+      "constructor(shortcutManager, registry = null)",
+      "_getInputAPI()",
+      "register(config)",
+      "unregister(config)"
+    ]
+  },
+  "StorageDiscoveryService": {
+    "file": "src/5-platform/storage/StorageDiscoveryService.js",
+    "methods": [
+      "constructor(serviceRegistry = null)",
+      "discoverDisks()",
+      "_readIndexedDBMetadata(dbName)",
+      "estimateCapabilities()"
+    ]
+  },
+  "VirtualDiskService": {
+    "file": "src/5-platform/storage/VirtualDiskService.js",
+    "methods": [
+      "constructor(serviceRegistry = null)",
+      "provisionVolume(config = {})",
+      "destroyVolume(volumeId)",
+      "activateVolume(disk)",
+      "deactivateVolume()",
+      "createDisk(name, type)",
+      "wipeDisk(driveId)",
+      "activateDisk(disk)",
+      "unmountCurrentDisk()"
+    ]
+  },
+  "ThemeRepositoryManager": {
+    "file": "src/5-platform/theming/ThemeRepositoryManager.js",
+    "methods": [
+      "constructor()",
+      "registerSource(sourceId, sourceInstance)",
+      "getSources()",
+      "setThemes(themes)",
+      "getAllThemes()",
+      "getThemeById(themeId)"
+    ]
+  },
+  "ThemeService": {
+    "file": "src/5-platform/theming/ThemeService.js",
+    "methods": [
+      "constructor(themeRepositoryManager, registry)",
+      "refreshAll()",
+      "restore(username)",
+      "getAvailableThemes()",
+      "getActiveThemeId()",
+      "setActiveThemeId(themeId)",
+      "applyTheme(themeId)",
+      "onChange(callback)"
+    ]
+  },
+  "UserManager": {
+    "file": "src/5-platform/users/UserManager.js",
+    "methods": [
+      "constructor()",
+      "loadUsersFromData(usersArray)",
+      "getUsersData()",
+      "deleteUser(username)",
+      "renameUser(oldUsername, newUsername)",
+      "getUsers()",
+      "createUser(username, displayName, passwordHash, role = 'USER', options = {})",
+      "getUser(username)"
+    ]
+  },
+  "UserProfileManager": {
+    "file": "src/5-platform/users/UserProfileManager.js",
+    "methods": [
+      "constructor()",
+      "getProfile(username)",
+      "setProfile(username, profileData)"
+    ]
+  },
+  "UserProfileService": {
+    "file": "src/5-platform/users/UserProfileService.js",
+    "methods": [
+      "constructor(userProfileManager, registry)",
+      "getCurrentProfile()",
+      "getProfile(username)",
+      "updateProfile(username, updates = {})",
+      "setAvatar(username, avatarUrl)",
+      "getDisplayName(username)"
+    ]
+  },
+  "UserService": {
+    "file": "src/5-platform/users/UserService.js",
+    "methods": [
+      "constructor(userManager, registry)",
+      "loadUsersFromDisk()",
+      "saveUsersToDisk()",
+      "createUser(username, displayName, password, options = {})",
+      "updateUser(username, updates = {}, options = {})",
+      "renameUser(oldUsername, newUsername, options = {})",
+      "deleteUser(username, options = {})",
+      "resetPassword(username, newPassword, options = {})",
+      "getUser(username)",
+      "getUsers()",
+      "_bindEvent(eventName, callback)",
+      "onCreated(callback)",
+      "onDeleted(callback)",
+      "onRenamed(callback)",
+      "onProfileChanged(callback)",
+      "onPasswordChanged(callback)"
+    ]
+  },
+  "UserSettingsManager": {
+    "file": "src/5-platform/users/UserSettingsManager.js",
+    "methods": [
+      "constructor()",
+      "loadSettings(username, data)",
+      "get(username, key)",
+      "getAll(username)",
+      "set(username, key, value)",
+      "reset(username, key)"
+    ]
+  },
+  "UserSettingsService": {
+    "file": "src/5-platform/users/UserSettingsService.js",
+    "methods": [
+      "constructor(userSettingsManager, registry)",
+      "_getCurrentUsername()",
+      "restore(username)",
+      "saveSettingsForUser(username)",
+      "getSetting(key)",
+      "setSetting(key, value)",
+      "getAllSettings()",
+      "onChange(callback)"
+    ]
+  },
+  "WidgetManager": {
+    "file": "src/5-platform/widgets/WidgetManager.js",
+    "methods": [
+      "constructor()",
+      "setWidgets(instances, nextInstanceId)",
+      "getWidgetState()",
+      "addInstance(widgetId, x = 100, y = 100, w = 240, h = 120, config = {})",
+      "removeInstance(instanceId)",
+      "updateInstance(instanceId, updates)",
+      "getInstances()"
+    ]
+  },
+  "WidgetService": {
+    "file": "src/5-platform/widgets/WidgetService.js",
+    "methods": [
+      "constructor(widgetManager, extensionService, serviceRegistry)",
+      "_getConfigPath(username)",
+      "restore(username)",
+      "save()",
+      "addWidget(widgetId, x, y, w, h, config = {})",
+      "removeWidget(instanceId)",
+      "moveWidget(instanceId, x, y)",
+      "resizeWidget(instanceId, w, h)",
+      "updateWidgetConfig(instanceId, configUpdates)",
+      "getWidgets()",
+      "getAvailableWidgets()",
+      "onChange(callback)"
+    ]
+  },
+  "WindowManager": {
+    "file": "src/5-platform/window/WindowManager.js",
+    "methods": [
+      "constructor()",
+      "createWindow(options, frameFactory = null)",
+      "getAllWindows()",
+      "_applyState(id)",
+      "_calculateInitialPosition(options, hostWidth, hostHeight)",
+      "moveWindow(id, dx, dy)",
+      "resizeWindow(id, dx, dy, edge)",
+      "setWindowPosition(id, x, y)",
+      "setWindowSize(id, w, h)",
+      "setWindowTitle(id, title)",
+      "minimizeWindow(id)",
+      "maximizeWindow(id)",
+      "restoreWindow(id)",
+      "closeWindow(id)",
+      "_compressZIndex()",
+      "_focusTopWindow()",
+      "focusWindow(id)",
+      "_blurWindow(id)",
+      "_getWindowsByPid(pid)",
+      "_getWindowsByInputPolicy(policyName)",
+      "_toggleWindow(id)",
+      "isMinimized(id)",
+      "getWindowState(id)",
+      "reconcileWorkspaceVisibility(activeWorkspaceId)"
+    ]
+  },
+  "WindowService": {
+    "file": "src/5-platform/window/WindowService.js",
+    "methods": [
+      "constructor(windowManager, registry)",
+      "createWindow(options)",
+      "closeWindow(id)",
+      "focusWindow(id)",
+      "blurWindow(id)",
+      "setWindowPosition(id, x, y)",
+      "setWindowSize(id, width, height)",
+      "setWindowTitle(id, title)",
+      "minimizeWindow(id)",
+      "toggleMinimize(id)",
+      "isMinimized(id)",
+      "maximizeWindow(id)",
+      "restoreWindow(id)",
+      "getWindowState(id)",
+      "focusWindowByPid(pid)",
+      "minimizeWindowByPid(pid)",
+      "maximizeWindowByPid(pid)",
+      "restoreWindowByPid(pid)",
+      "toggleWindowByPid(pid)",
+      "closeWindowByPid(pid)",
+      "getOwnWindows(pid)",
+      "getWindowsWithInputPolicy(policyName)",
+      "getAllWindows()",
+      "getActiveWindowEnvironmentType()",
+      "getWindowEnvironmentType(windowId)"
+    ]
+  },
+  "WorkspaceManager": {
+    "file": "src/5-platform/workspace/WorkspaceManager.js",
+    "methods": [
+      "constructor()",
+      "createWorkspace(name = null)",
+      "switchTo(id)",
+      "removeWorkspace(id)",
+      "getActiveWorkspaceId()",
+      "getWorkspaces()",
+      "restoreState(serializedWorkspaceState)",
+      "reset()"
+    ]
+  },
+  "WorkspaceService": {
+    "file": "src/5-platform/workspace/WorkspaceService.js",
+    "methods": [
+      "constructor(workspaceManager)",
+      "createWorkspace(name = null)",
+      "switchTo(id)",
+      "removeWorkspace(id)",
+      "getActiveWorkspaceId()",
+      "getWorkspaces()",
+      "serializeState()",
+      "restoreState(state)",
+      "reset()",
+      "_bindEvent(eventName, callback)",
+      "onCreated(callback)",
+      "onDeleted(callback)",
+      "onSwitched(callback)",
+      "onStateChanged(callback)"
+    ]
+  },
+  "DeveloperOptionsService": {
+    "file": "src/8-developer/DeveloperOptionsService.js",
+    "methods": [
+      "constructor(settingsManager)",
+      "initialize()",
+      "applySettings()",
+      "toggleFPS(show)",
+      "logEventsHandler(event, payload)",
+      "toggleEventLogging(enable)",
+      "dispose()"
+    ]
+  },
+  "MockCapabilityService": {
+    "file": "src/8-developer/testing/TestHelpers.js",
+    "methods": [
+      "constructor(config)",
+      "setTitle(title)",
+      "close()",
+      "constructor()",
+      "mock(capability, handler)",
+      "invoke(capability, args)",
+      "constructor()",
+      "on(event, callback)",
+      "emit(event, payload)",
+      "constructor()"
+    ]
+  }
+}
